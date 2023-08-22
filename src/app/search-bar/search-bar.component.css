@@ -1,0 +1,326 @@
+
+  .container{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+   
+    align-items: top;
+    justify-content: center;
+
+    
+ 
+}
+
+  
+ form{
+  margin-top: 9%;
+   background-color: #fff;
+    width: 800px;
+    height: 50px;
+    display: flex;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 5, 0.7);
+
+ }
+ form input{
+    flex: 1;
+    border: none;
+    outline: none;
+   margin-left: 50px;
+    background-color: #fff;
+ }
+ form .icon{
+    position: absolute;
+   
+  
+    align-self: center;
+    padding: 10px 20px;
+    color: #0c2461;
+   
+ }
+ form button{
+    background: #e55039;
+    width: 200px;
+    padding: 10px 5px;
+    border: none;
+    outline: none;
+    color: #fff;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+ }
+
+
+ .table-div{
+    margin-top: 0;
+    display: flex;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+
+}
+
+
+ .table-container {
+    margin-top: 2%;
+    border-radius: 10px;
+    width: 80%;
+    height: fit-content;
+    width: 40%;
+    margin-bottom: 5%;
+    
+     
+
+   
+  
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 2%;
+
+
+  }
+ 
+  .table-container table th,
+.table-container table td {
+  padding: 10px;
+
+}
+.table-container table td {
+    width: 60%;
+ 
+}
+.table-container table th{
+    background-color: #0c2461;
+    font-size: 14px;
+    color: #fff;
+   
+}
+th{
+  font-size: 15px;
+}
+td{
+  font-size: 15px;
+  color: black !important;
+}
+
+  
+   .table-container table  {
+    color: #fff;
+    padding: 5px;
+    text-align: left;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    
+  }
+
+  
+  
+  tbody td {
+    background-color: #fff;
+    
+    padding: 10px;
+   
+  }
+  
+  tbody tr:nth-child(even) td {
+    background-color: #f9f9f9;
+  }
+  .button-div{
+    width: 100%;
+    align-items:left;
+    justify-content:space-between;
+    display: flex;
+  }
+
+  .table-button{
+    border: none;
+    background-color: #0c2461;
+    color: #fff;
+    border-radius: 5px;
+  width: 150px;
+  height:40px ;
+  letter-spacing: 1px;
+  
+  }
+  .indent-button{
+    background-color:#e55039;
+  }
+  .custom-dialog-container {
+    position: absolute; /* or position: relative; */
+  }
+  .custom-backdrop {
+  position: fixed;
+}
+.expired-row , .expired-balance-row{
+  background-color: #eb2f06 !important;
+  color: #fff !important;
+  
+}
+
+.valid-row ,.valid-balance-row{
+  background-color: #05c46b !important;
+  color: #fff !important;
+}
+.table-expiry-div{
+  margin-top: 3%;
+  display: flex;
+  flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.table-expiry-div table{
+  width: 90%;
+  box-shadow: 0 2px 5px rgba(0, 0, 5, 1);
+  max-height: 400px;
+  overflow: auto;
+
+}
+.table-expiry-div table th,tr{
+  text-align: center;
+}
+.table-expiry-div table th{
+  background-color: #0c2461;
+  height: 50px !important;
+  color: white;
+}
+.table-expiry-div h3{
+  text-align: center;
+  font-size: 17px;
+  padding: 0.2%;
+  font-weight: bold;
+
+}
+.small-button{
+  border: none;
+  background-color: #eb2f06;
+  backdrop-filter: 2px;
+  width: 80px;
+  height: 25px;
+  opacity: .9;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  font-size: 13px;
+  box-shadow: 0px 0px 2px 2px rgb(238, 119, 119);
+  color: white;
+}
+.small-button:active{
+  background: #000;
+    opacity: .4;
+}
+.small-button2{
+  border: none;
+  background-color: #4cd137;
+  backdrop-filter: 2px;
+  width: fit-content;
+  height: 25px;
+  opacity: .9;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  font-size: 13px;
+  box-shadow: 0px 0px 2px 2px rgb(185, 237, 186);
+  color: white;
+  margin-left: 15px;
+}
+
+
+.Approved{
+  font-weight: 600;
+  background-color: rgb(222, 241, 215);
+  box-shadow: 1px 1px 1px rgb(0, 255, 38);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  color: #44bd32;
+
+}
+.Pending{
+
+  font-weight: 600;
+  background-color: rgb(245, 245, 221);
+  box-shadow: 1px 1px 1px rgb(241, 225, 5);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  color: #fbc531;
+}
+.Rejected{
+  font-weight: 600;
+  background-color: rgb(245, 221, 221);
+  box-shadow: 1px 1px 1px rgb(241, 5, 5);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  color: #e84118;
+}
+
+
+
+@media screen and (max-width: 600px) {
+  form {
+    flex-direction: column;
+  }
+  
+  form .icon {
+    position: static;
+    margin: 0 auto;
+  }
+  
+  form input {
+    margin: 10px;
+  }
+  
+  form button {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 10px;
+  }
+  
+  .table-container {
+    width: 100%;
+    margin: 0;
+  }
+  
+  .table-container table th,
+  .table-container table td {
+    font-size: 12px;
+  }
+  
+  .button-div {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .table-button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .small-button,
+  .small-button2 {
+    width: 70px;
+    height: 20px;
+    font-size: 10px;
+  }
+  
+  .table-expiry-div table th {
+    font-size: 12px;
+  }
+  
+  .table-expiry-div h3 {
+    font-size: 14px;
+  }
+  
+  .Approved,
+  .Pending,
+  .Rejected {
+    font-size: 12px;
+    padding: 0.3rem 0.5rem;
+  }
+}

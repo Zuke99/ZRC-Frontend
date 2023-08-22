@@ -1,0 +1,389 @@
+
+<div class="container" id="whole-page">
+    
+<ng-container *ngIf="getUserRole()==='MasterAdmin' || getUserRole() === 'Contributor'">
+  <div id="printpage">
+    <div class="letter-div center" id="div1">
+    <div class="head-div">
+        <h3>South Central Railway</h3>
+        <h3>Office of the Medical Director</h3>
+        <h3>Central Hospital, Lallaguda, Secunderabad-17</h3>
+    </div>
+    <hr class="dashed">
+    <div class="body-div center" >
+<div class="top-info">
+        <body class="left-info">No.MD/69/Stores/{{curr_indentArray.fy}}/ZRC/ {{curr_indentArray.indents_sl}}  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          
+          Dt.{{curr_indentArray.date_of_indent | date:'dd/MM/yyyy'}}</body>
+       
+</div>
+<div class="note-div">
+    <p></p>
+    <h3 style="text-decoration: underline;"><strong>NOTE<p></p></strong></h3>
+</div>
+
+
+        <p class="subject center" style="text-align: center;"> Subject: Procurement of <strong>{{curr_indentArray.product_name}}</strong> (PH No. <strong>{{curr_indentArray.ph_number}}</strong>)<br/>
+            Ref: ZRC No. <strong>{{curr_indentArray.zrc_number}}</strong> Dt. <strong>{{curr_indentArray.zrc_valid_from | date:'dd/MM/yyyy'}}</strong> valid upto <strong>{{curr_indentArray.zrc_valid_upto | date:'dd/MM/yyyy'}}</strong>
+
+        </p>
+        <p></p>
+        <p class="main-info center">
+            With reference to the above, it is proposed to procure <strong>{{curr_indentArray.product_name}}</strong> (PH No.<strong>{{curr_indentArray.ph_number}}</strong>) 
+            for use at CH/LGD. This item is indented in AMI <strong>{{curr_indentArray.zrc_fy}}</strong> under ZRC for a total quantity of 
+            <strong>{{curr_indentArray.qty_annual_indent}}</strong> Nos for MD/CH/LGD. Present indented quantity is <strong>{{curr_indentArray.qty_required}}</strong> Nos.
+        </p>
+        <p class="main-info center">
+            MD/CH/LGD is requested to accord initial approval to place an indent for the required quantity of the above item under the given ZRC and for further process of procurement through PCMM/SCR.
+
+        </p>
+        <p></p><p></p><br/><br/><br/>
+       
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              
+        
+               <strong>[APho/CH/LGD]</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <br/><br/>
+               <strong>[ACHD/Stores/CH/LGD]</strong>
+               <br/><br/><br/><br/><br/>
+               <strong>[MD/CH/LGD]</strong>
+               
+         
+    </div>
+
+</div>
+
+
+
+
+<div class="indent-table" id="div2">
+  <h3 style="text-decoration: underline"><strong>PROFORMA FOR SUBMISSION OF SUPPLIMENTARY INDENT</strong></h3>  
+  <p class="top-info-indent">&nbsp;&nbsp;&nbsp;<strong>No. MD/69/Stores/{{curr_indentArray.fy}}/ZRC/{{curr_indentArray.indents_sl}}</strong> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  
+   <strong>Dt. {{curr_indentArray.date_of_indent | date:'dd/MM/yyyy' }}</strong></p>
+    <table class="table1" >
+        <tbody >
+            <tr>
+                <th scope="row">01</th>
+                <th class="th-name">Product Code</th>
+                <td style="text-align: center"><strong>{{curr_indentArray.ph_number}}</strong></td>
+            </tr>
+
+            <tr>
+                <th scope="row">02</th>
+                <th class="th-name">Name Of the Drug</th>
+                <td style="text-align: center"><strong>{{curr_indentArray.product_name}}</strong></td>
+            </tr>
+            <tr>
+                <th scope="row">03</th>
+                <th class="th-name">ZRC Balance Available</th>
+                <td style="text-align: center"><strong>{{curr_indentArray.balance_available}}</strong></td>
+            </tr>
+
+            <tr>
+                <th scope="row">04</th>
+                <th class="th-name">Quantity Required</th>
+                <td style="text-align: center"><strong>{{curr_indentArray.qty_required}}</strong></td>
+            </tr>
+
+            <tr>
+                <th scope="row">05</th>
+                <th class="th-name">ZRC No</th>
+                <td style="text-align: center"><strong>{{curr_indentArray.zrc_number}} (DT {{curr_indentArray.zrc_valid_from | date:'dd/MM/yyyy'}} valid upto {{curr_indentArray.zrc_valid_upto | date: 'dd/MM/yyyy'}}) <br/> of AMI {{curr_indentArray.zrc_fy}}</strong></td>
+            </tr>
+
+            <tr>
+                <th scope="row">06</th>
+                <th class="th-name">Whether it is a product in IRP and whether it is a Proprietary/ Non-Proprietary product (Strike out whichever is not applicable)</th>
+                <td style="text-align: center"><strong>{{curr_indentArray.irpTextBox}}  </strong>    </td>
+            </tr>
+
+
+
+            <tr>
+                <th scope="row">07</th>
+                <th class="th-name">If it is a listed product, was it indented in AMI : Yes/No</th>
+                <td style="text-align: center"><strong>{{curr_indentArray.indent_ami}}</strong>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row">08</th>
+                <th class="th-name">Quantity indented in Annual Indent</th>
+                <td style="text-align: center"><strong>{{curr_indentArray.qty_annual_indent}}</strong></td>
+            </tr>
+
+            <tr>
+                <th scope="row">09</th>
+                <th class="th-name">Quantity Passed by PCMD</th>
+                <td style="text-align: center"><strong>{{curr_indentArray.qty_pcmd}}</strong></td>
+            </tr>
+
+            <tr>
+                <th scope="row">10</th>
+                <th class="th-name">Quantity Indented through above  ZRC till date</th>
+                <td style="text-align: center"><strong>{{curr_indentArray.qty_indented}}</strong></td>
+            </tr>
+
+            <tr>
+                <th scope="row">11</th>
+                <th class="th-name">Quantity Received through above  ZRC till date</th>
+                <td style="text-align: center"><strong>{{curr_indentArray.qty_recd}}</strong></td>
+              
+            </tr>
+
+            <tr>
+                <th scope="row">12</th>
+                <th class="th-name">Quantity indented through Supplementary indent from
+                    {{curr_indentArray.qty_indented_supl_date | date:'dd/MM/yyyy'}}
+                   </th>
+                <td style="text-align: center"><strong>{{curr_indentArray.qty_indented_supl}}</strong></td>
+            
+            </tr>
+
+            <tr>
+                <th scope="row">13</th>
+                <th class="th-name">Quantity Received through AMI/Supplementary indent from {{curr_indentArray.qty_recd_supl_date | date:'dd/MM/yyyy'}} if any</th>
+                <td style="text-align: center"><strong>{{curr_indentArray.qty_recd_supl}} </strong></td>
+     
+            </tr>
+
+            <tr>
+                <th scope="row">14</th>
+                <th class="th-name">Expended Quantity from {{curr_indentArray.qty_expended_date | date:'dd/MM/yyyy'}} if any</th>
+                <td style="text-align: center"><strong>{{curr_indentArray.qty_expended}}</strong> </td>
+     
+            </tr>
+
+            <tr>
+                <th scope="row">15</th>
+                <th class="th-name">Balance on hand </th>
+                <td style="text-align: center"> <strong>{{curr_indentArray.balance_hand}}</strong></td>
+
+            </tr>
+
+            <tr>
+                <th scope="row">16</th>
+                <th class="th-name">If all the quantity supplied has been received, reason for additional quantity
+                    (Give brief reasons)
+                    </th>
+                <td style="text-align: center"> <strong>{{curr_indentArray.qty_additional}}</strong></td>
+
+            </tr>
+
+            <tr>
+                <th scope="row">17</th>
+                <th class="th-name">Is there any equal substitute is available in stock-Yes/No
+                    </th>
+                <td style="text-align: center"><strong> {{curr_indentArray.equal_substitute}}</strong></td>
+
+            </tr>
+
+            <tr>
+                <th scope="row">18</th>
+                <th class="th-name">By what date your stock will be exhausted and fresh supply should reach you.</th>
+                <td style="text-align: center"><strong>{{curr_indentArray.fresh_stock_date}}</strong></td>
+             
+            </tr>
+
+            <tr>
+                <th scope="row">19</th>
+                <th class="th-name">In case you have less than six weeks stock, give reasons why demand was not forwarded to PCMD (with remarks if any)
+
+                </th>
+                <td style="text-align: center"><strong>{{curr_indentArray.remarks}}</strong></td>
+
+            </tr>
+
+            <tr>
+                <th scope="row">20</th>
+                <th class="th-name">Last Indent date & Qty </th>
+                <td style="text-align: center"><strong>(Dt. {{curr_indentArray.last_indent_date | date:'dd/MM/yyyy'}} & Qty. {{curr_indentArray.qty_last_indent}})</strong></td>
+
+            </tr>
+
+            <tr>
+                <th scope="Row">21</th>
+                <th class="th-name">Remarks (If any)</th>
+                <td style="text-align : center"><strong>{{curr_indentArray.extra_remarks}}</strong></td>
+            </tr>
+
+            
+
+            
+
+
+        </tbody>
+    </table>   
+    <p></p><p></p><br/><br/><br/>
+       
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              
+        
+               <strong>[APho/CH/LGD]</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <br/><br/>
+               <strong>[ACHD/Stores/CH/LGD]</strong>
+               <br/><br/><br/><br/>
+               <strong>[MD/CH/LGD]</strong>
+               
+       
+</div>
+</div>
+<button 
+[useExistingCss]="true"
+printSectionId="printpage" [printStyle]="{ }"
+ ngxPrint>Print</button>
+ <button (click)="editIndent(curr_indentArray)">Edit</button>
+
+</ng-container>
+
+
+
+<!--    **********************USER INDENT LETTER************************   -->
+
+<ng-container *ngIf="getUserRole() === 'User'">
+
+    <div class="letter-div center" id="div1">
+    <div id="printpage">
+    <div class="head-div">
+        <h3>South Central Railway</h3>
+        <h3>Office of the Medical Director</h3>
+        <h3>Central Hospital, Lallaguda, Secunderabad-17</h3>
+    </div>
+    <hr class="dashed">
+
+
+    <h3 style="text-decoration: underline"><strong>ZRC REQUISITION FORM</strong></h3>  
+  <p class="top-info-indent">&nbsp;&nbsp;&nbsp;<strong>No. MD/69/Stores/{{curr_indentArray.fy}}/ZRC/{{curr_indentArray.indents_sl}}</strong> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  
+   <strong>Dt. {{curr_indentArray.date_of_indent | date:'dd/MM/yyyy' }}</strong></p>
+    <table class="table1" >
+        <tbody >
+            <tr>
+                <th scope="row">01</th>
+                <th class="th-name">Product Code</th>
+                <td style="text-align: center"><strong>{{curr_indentArray.ph_number}}</strong></td>
+            </tr>
+
+            <tr>
+                <th scope="row">02</th>
+                <th class="th-name">Name Of the Drug</th>
+                <td style="text-align: center"><strong>{{curr_indentArray.product_name}}</strong></td>
+            </tr>
+            <tr>
+                <th scope="row">03</th>
+                <th class="th-name">ZRC Balance Available</th>
+                <td style="text-align: center"><strong>{{curr_indentArray.balance_available}}</strong></td>
+            </tr>
+
+            <tr>
+                <th scope="row">04</th>
+                <th class="th-name">Quantity Required</th>
+                <td style="text-align: center"><strong>{{curr_indentArray.qty_required}}</strong></td>
+            </tr>
+            <tr>
+                <th scope="row">05</th>
+                <th class="th-name">Whether it is a product in IRP and whether it is a Proprietary/ Non-Proprietary product (Strike out whichever is not applicable)</th>
+                <td style="text-align: center"><strong>{{curr_indentArray.irpTextBox}}</strong>      </td>
+            </tr>
+
+            <tr>
+                <th scope="row">06</th>
+                <th class="th-name">ZRC No</th>
+                <td style="text-align: center"><strong>{{curr_indentArray.zrc_number}} (DT {{curr_indentArray.zrc_valid_from | date:'dd/MM/yyyy'}} valid upto {{curr_indentArray.zrc_valid_upto | date: 'dd/MM/yyyy'}}) <br/> of AMI {{curr_indentArray.zrc_fy}}</strong></td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">07</th>
+                <th class="th-name">Balance on hand </th>
+                <td style="text-align: center"> <strong>{{curr_indentArray.balance_hand}}</strong></td>
+
+            </tr>
+
+            <tr>
+                <th scope="row">08</th>
+                <th class="th-name">By what date your stock will be exhausted and fresh supply should reach you.</th>
+                <td style="text-align: center"><strong>{{curr_indentArray.fresh_stock_date}}</strong></td>
+             
+            </tr>
+
+            <tr>
+                <th scope="row">09</th>
+                <th class="th-name">In case you have less than six weeks stock, give reasons why demand was not forwarded to PCMD (with remarks if any)
+
+                </th>
+                <td style="text-align: center"><strong>{{curr_indentArray.remarks}}</strong></td>
+
+            </tr>
+
+            
+        </tbody>
+    </table>   
+    <p></p><p></p><br/><br/><br/><br/>
+    <body class="left-info">&nbsp;&nbsp;&nbsp;<strong></strong> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
+        
+       <strong>Indenting Officer's Signature</strong></body>
+       <p></p><p></p>
+       
+</div>
+
+
+
+
+<button 
+[useExistingCss]="true"
+printSectionId="printpage" [printStyle]="{ }"
+ ngxPrint>Print</button>
+
+
+
+
+
+</div>
+
+</ng-container>
+</div>

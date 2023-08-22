@@ -1,0 +1,10 @@
+<form class="needs-validation"> 
+<div class="form-group">
+    <label for="exampleFormControlFile1" class="labels">ZRC File</label>
+    <input #singleInput name="image" (change)="selectImage($event)" type="file" required class="form-control-file" id="exampleFormControlFile1">
+    <label>{{fileName}}</label>
+    <div class="valid-feedback">Valid.</div>
+    <div class="invalid-feedback">Please fill out this field.</div><br/><br/>
+    <button type="submit" class="btn btn-primary" (click)="validate()">Upload</button>
+  </div>
+  </form>

@@ -1,0 +1,114 @@
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+<body>
+  <img src="/assets/logonobg.png">
+<header (mouseleave)="showDropdown = false">
+  <div class="logo">
+  <a routerLink="/search-bar"><span>Zonal Rate Contract</span></a>
+  </div>
+<ul class="navbar list-unstyled">
+  <li><a *ngIf="isLoggedIn()" routerLink="/search-bar" (click)="navigateToHome()">Home</a></li>
+  <li><a *ngIf="isLoggedIn()  && (getUserRole() === 'MasterAdmin' || getUserRole() === 'Contributor')" routerLink="/add">Add ZRC</a></li>
+  <li class="dropdown" (mouseenter)="showDropdown = true" ><a *ngIf="isLoggedIn()"  (mouseenter)="showDropdown = true" > Reports </a>
+    <ul *ngIf="showDropdown" class="report-option">
+      <li><a routerLink="/zrc-reports">ZRC Reports</a></li>
+      <li><a *ngIf="isLoggedIn() " routerLink="/indent-reports">Indent Reports</a></li>
+      
+      
+    </ul>
+  </li>
+  <li><a *ngIf="isLoggedIn() && (getUserRole() === 'MasterAdmin' || getUserRole() === 'Contributor')" routerLink="/master-list">Master List</a></li>
+  <li><a *ngIf="isLoggedIn() && (getUserRole() === 'MasterAdmin')" routerLink="/register">Add User</a></li>
+
+
+
+ 
+</ul>
+
+
+<div class="empty-div">
+  <ul>
+    <li><label *ngIf="isLoggedIn()">Welcome {{getUserName()}}</label></li>
+    <li><a *ngIf="isLoggedIn()" routerLink="#" (click)="logout()" class="log-out"  style="font-size: 16px;">(LogOut)</a></li>
+    <li><a *ngIf="isLoggedIn()" routerLink="#" (click)="openDialog()" class="log-out"  style="font-size: 16px;">(Change Password)</a></li>
+  </ul>
+<div class="bx bx-menu" id="menu-icon"></div>
+</div>
+</header>
+
+
+</body>
+
+
+
+
+
+
+
+<!-- 
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+  <header>
+<div class="navbar">
+  <div class="logo"><a href="#">Zonal Rate Contract</a></div>
+  <ul class="links">
+    <li><a routerLink="/find">Home</a></li>
+    <li><a routerLink="/add">Add Zrc</a></li>
+  </ul>
+  <a href="#" class="action-btn">Get Started</a>
+  <div class="toggle=btn">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+ 
+</div>
+<div class="dropdown-menu">
+  <li><a routerLink="/find">Home</a></li>
+    <li><a routerLink="/add">Add Zrc</a></li>
+    <li>  <a href="#" class="action-btn">Get Started</a></li>
+</div>
+
+</header>
+
+</body>
+
+
+
+
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">Zonal Rate Contract</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse first-div" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/find">Home </a>
+      </li>
+    </ul>
+  </div>
+  <div class="collapse navbar-collapse other-div" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/add" routerLinkActive="active">Add ZRC </a>
+        </li>
+      </ul>
+    </div>
+    
+  
+
+
+
+
+</nav> -->
+
+

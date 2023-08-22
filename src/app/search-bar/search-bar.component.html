@@ -1,0 +1,240 @@
+<!-- <div class="search-container">
+<input type="text" [(ngModel)]="searchInput" (input)="search()" placeholder="Search...">
+<ul class="search-results" *ngIf="showResults">
+  <li *ngFor="let result of integerResults" (click)="selectResult(result.ph_number)">PH: {{ result.ph_number }}</li>
+  <li *ngFor="let result of stringResults" (click)="selectResult(result.ph_number)">Product Name: {{ result.product_name }}</li> 
+</ul>
+</div> -->
+<head>
+    <script src="https://kit.fontawesome.com/a34cd9e59d.js" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<div class="container">
+<form>
+
+    <i class="fa-solid fa-magnifying-glass icon"></i>
+    <input  [(ngModel)]="searchInput"  [ngModelOptions]="{standalone:true}" matInput type="text" (input)="search()" [matAutocomplete]="auto" placeholder="Enter PH Number or Product Name"/>
+    <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let item of integerResults" [value]="item" (click)="selectResult(item.product_name)" >
+            {{item.ph_number}} - 
+            {{item.product_name}}
+        </mat-option>
+    </mat-autocomplete>
+ 
+    <button type="submit" (click)="getDetails()">Search</button>
+    </form> 
+
+
+
+</div >
+
+
+<div class="table-div" *ngFor="let StudentItem of studentArray" >
+ 
+<div class="table-container" >
+   
+    <table >
+        <tbody  >
+            <tr>
+                <th >Serial No.</th>
+                <td >{{StudentItem.serial}}</td>
+        
+            </tr>
+            <tr>
+                <th scope="row">ZRC FY</th>
+                <td>{{StudentItem.zrc_fy}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Product Name</th>
+                <td>{{StudentItem.product_name}}</td>
+            </tr>
+            <tr>
+                <th scope="row">PH Number</th>
+                <td>{{StudentItem.ph_number}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Supplier Name</th>
+                <td>{{StudentItem.supplier_name}}</td>
+            </tr>
+            <tr>
+                <th scope="row">ZRC Number</th>
+                <td>{{StudentItem.zrc_number}}</td>
+            </tr>
+            <tr>
+                <th scope="row">ZRC Date</th>
+                <td>{{StudentItem.zrc_date | date:'dd/MM/yyyy'}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Quantity for MD/CH/LGD</th>
+                <td>{{StudentItem.qty}}</td>
+            </tr>
+            <tr>
+                <th scope="row">ZRC Valid From</th>
+                <td>{{StudentItem.zrc_valid_from | date:'dd/MM/yyyy'}}</td>
+            </tr>
+            <tr  >
+                <th scope="row">ZRC Valid Upto</th>
+                <td [ngClass]="{'expired-row': getRowColor(StudentItem.zrc_valid_upto) === 'expired-row', 'valid-row': getRowColor(StudentItem.zrc_valid_upto) === 'valid-row'}">{{StudentItem.zrc_valid_upto | date : 'dd/MM/yyyy'}} </td>
+                
+            </tr>
+            
+            <tr>
+                <th scope="row">Balance Quantity</th>
+                <td [ngClass]="{'expired-balance-row': getBalanceRowColor(StudentItem.Balance) === 'expired-balance-row', 'valid-balance-row': getBalanceRowColor(StudentItem.Balance) === 'valid-balance-row'}">{{StudentItem.Balance}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Remarks</th>
+              <td>{{StudentItem.remarks}}</td>
+          </tr>
+         
+            
+        </tbody>
+    </table>
+    <div class="button-div">
+<button class="table-button"  (click)="downloadFile(StudentItem.file)">Download ZRC</button>
+<button  class="table-button"(click)="navigate(StudentItem.file)" disabled>View ZRC</button>
+<button  class="table-button"(click)="update(StudentItem.serial)">Update Data</button>
+<button  class="table-button indent-button" (click)="checkUser(StudentItem)">Place Indent</button>
+</div>
+  </div>
+
+
+
+
+
+
+ 
+
+  </div>
+
+  <div class="table-expiry-div" *ngIf="isTableVisible">
+    <h3>ZRC Expiring Within a Month</h3>
+    <table >
+        <thead>
+          <tr>
+            <th>Serial</th>
+            <th>ZRC FY</th>
+            <th>Product Name</th>
+            <th>PH Number</th>
+            <th>Supplier Name</th>
+            <th>ZRC Number</th>
+            <th>ZRC Date</th>
+            <th>Quantity</th>
+            <th>ZRC Valid From</th>
+            <th>ZRC Valid Upto</th>
+            <th>Balance</th>
+            <th>Remarks</th>
+            <th>View ZRC</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let details of expiredZrc ; let i  = index">
+          <tr >
+            <td>{{i+1}}</td>
+            <td>{{details.zrc_fy}}</td>
+            <td>{{details.product_name}}</td>
+            <td>{{details.ph_number}}</td>
+            <td>{{details.supplier_name}}</td>
+            <td>{{details.zrc_number}}</td>
+            <td>{{details.zrc_date | date : 'dd/MM/yyyy'}}</td>
+            <td>{{details.qty}}</td>
+            <td>{{details.zrc_valid_from | date : 'dd/MM/yyyy'}}</td>
+            <td>{{details.zrc_valid_upto | date : 'dd/MM/yyyy'}}</td>
+            <td>{{details.Balance}}</td>
+            <td>{{details.remarks}}</td>
+            <td><button class="small-button" (click)="searchExpiredZrc(details.serial)">View ZRC</button></td>
+          </tr>
+          
+        </tbody>
+        <label style="text-align: center;" *ngIf="textVisible"> No Records Found </label>
+      </table>
+      
+
+  </div>
+
+  <!-- ********************************************* USER INERFACE ********************************* -->
+
+  <div class="table-expiry-div" *ngIf="getUserRole() === 'User'">
+    <h3>Requested Indents</h3>
+    <table>
+        <thead>
+          <tr>
+            <th>Serial</th>
+            <th>Product Name</th>
+            <th>PH Number</th>
+            <th>ZRC Number</th>
+            <th>Quantity Req</th>
+            <th>ZRC Validity</th>
+            <th>Status</th>
+            <th>Executive</th>
+            <th>Mark As Read</th>
+            <th>View Letter</th>
+
+
+ 
+          </tr>
+        </thead>
+        <tbody *ngFor="let details of userIndents ; let i  = index">
+          <tr >
+            <td>{{i+1}}</td>
+            <td>{{details.product_name}}</td>
+            <td>{{details.ph_number}}</td>
+            <td>{{details.zrc_number}}</td>
+            <td>{{details.qty_required}}</td>
+            <td>From {{details.zrc_valid_from | date : 'dd/MM/yyyy'}} To 
+           {{details.zrc_valid_upto | date : 'dd/MM/yyyy'}}</td>
+            <td ><label [ngClass]="{ 'Approved' : getStatus(details.approval_status)==='Approved' , 
+                'Pending' : getStatus(details.approval_status)==='Pending',
+            'Rejected' : getStatus(details.approval_status)==='Rejected'} ">{{getStatus(details.approval_status)}}</label><br/>
+          <span *ngIf="details.approval_status === 'Rejected'">Reason : {{details.reject_remarks}}</span>
+          </td>
+            <td>{{details.executive}}</td>
+            <td><button class="small-button" (click)="markAsRead(details.serial)" *ngIf="getStatus(details.approval_status) === 'Approved' || getStatus(details.approval_status)==='Rejected'">Hide</button></td>
+            <td><button class="small-button" (click)="viewUserLetter(details.serial)">View</button></td>
+          </tr>
+          
+        </tbody>
+        <label style="text-align: center;" *ngIf="textVisible"> No Records Found </label>
+      </table>
+  </div>
+<!--***************************************** USER INDENT REQUESTS FOR MASTERADMIN-->
+
+  <div class="table-expiry-div" *ngIf="getUserRole() === 'MasterAdmin' || getUserRole() === 'Contributor'">
+    <h3>Indent Requests</h3>
+    <table>
+        <thead>
+          <tr>
+            <th>Serial</th>
+            <th>Product Name</th>
+            <th>PH Number</th>
+            <th>ZRC Number</th>
+            <th>Quantity Req</th>
+            <th>ZRC Validity</th>
+            <th>Requested By</th>
+            <th>Action</th>
+
+
+
+ 
+          </tr>
+        </thead>
+        <tbody *ngFor="let details of userIndents ; let i  = index">
+          <tr >
+            <td>{{i+1}}</td>
+            <td>{{details.product_name}}</td>
+            <td>{{details.ph_number}}</td>
+            <td>{{details.zrc_number}}</td>
+            <td>{{details.qty_required}}</td>
+            <td>From {{details.zrc_valid_from | date : 'dd/MM/yyyy'}} To 
+           {{details.zrc_valid_upto | date : 'dd/MM/yyyy'}}</td>
+            <td>{{details.user_name}}</td>
+            <td><button class="small-button" (click)="openConfirmDialog(details.serial)">Reject</button><button class="small-button2" (click)="placeUserIndent(details)">Place Indent</button></td>
+          </tr>
+          
+        </tbody>
+        <label style="text-align: center;" *ngIf="textVisible"> No Records Found </label>
+      </table>
+  </div>
+  
+  
+  

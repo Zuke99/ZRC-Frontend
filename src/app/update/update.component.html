@@ -1,0 +1,109 @@
+<div class="main-div">
+  <div class="card">
+    <form class="needs-validation" *ngFor="let StudentItem of studentItem">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label class="labels" for="exampleFormControlSelect1">ZRC FY</label>
+          <select [(ngModel)]="StudentItem.zrc_fy" [ngModelOptions]="{standalone:true}" class="form-control form-control1" id="exampleFormControlSelect1" required>
+            <option *ngFor="let years of dropDownValues" [value]="years.zrc_fy"  >{{years.zrc_fy}}</option>
+          </select>
+          <div class="valid-feedback">Valid.</div>
+          <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label class="labels" for="formGroupExampleInput">Product Name</label>
+          <input type="text" value="sss" [(ngModel)]="StudentItem.product_name" [ngModelOptions]="{standalone:true}" required class="form-control form-control1" id="formGroupExampleInput">
+          <div class="valid-feedback">Valid.</div>
+          <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label class="labels" for="formGroupExampleInput">PH Number</label>
+          <input type="number" disabled [(ngModel)]="StudentItem.ph_number" [ngModelOptions]="{standalone:true}" class="form-control form-control1" id="formGroupExampleInput" placeholder="Example input" required>
+          <div class="valid-feedback">Valid.</div>
+          <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label class="labels" for="formGroupExampleInput">Supplier Name</label>
+          <input type="text" [(ngModel)]="StudentItem.supplier_name" [ngModelOptions]="{standalone:true}" required class="form-control form-control1" id="formGroupExampleInput" placeholder="Enter Supplier Name">
+          <div class="valid-feedback">Valid.</div>
+          <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="formGroupExampleInput" class="labels">ZRC Number</label>
+          <input type="text" [(ngModel)]="StudentItem.zrc_number" [ngModelOptions]="{standalone:true}" required class="form-control form-control1" id="formGroupExampleInput" placeholder="Enter ZRC Number">
+          <div class="valid-feedback">Valid.</div>
+          <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="formGroupExampleInput" class="labels">ZRC Date</label>
+          <mat-form-field class="ff">
+            <input [(ngModel)]="zrc_date" (dateChange)="setZrcValidFromDate();setDate(zrc_date)" [ngModelOptions]="{standalone:true}" matInput [matDatepicker]="picker" required placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <div class="valid-feedback">Valid.</div>
+          <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label class="labels" for="formGroupExampleInput">Qty for MD/CH/LGD</label>
+          <input type="number" (keypress)="onlyNumbers($event)" [(ngModel)]="StudentItem.qty" [ngModelOptions]="{standalone:true}" required class="form-control form-control1" id="formGroupExampleInput" placeholder="Enter Quantity">
+          <div class="valid-feedback">Valid.</div>
+          <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="formGroupExampleInput"   class="labels">ZRC Valid From</label>
+          <mat-form-field class="ff">
+            <input [(ngModel)]="zrc_valid_from" (dateChange)="setDate(zrc_valid_from)" [ngModelOptions]="{standalone:true}" required matInput [matDatepicker]="picker1" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+          <div class="valid-feedback">Valid.</div>
+          <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="formGroupExampleInput" class="labels">ZRC Valid Upto</label>
+          <mat-form-field class="ff">
+            <input [(ngModel)]="zrc_valid_upto" [ngModelOptions]="{standalone:true}" required matInput [matDatepicker]="picker2" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+          <div class="valid-feedback">Valid.</div>
+          <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="formGroupExampleInput" class="labels">Remarks</label>
+          <input type="text" [(ngModel)]="StudentItem.remarks" [ngModelOptions]="{standalone:true}" required class="form-control form-control1" id="formGroupExampleInput" placeholder="Enter Remarks ">
+          <div class="valid-feedback">Valid.</div>
+          <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+        </div>
+
+      
+
+
+
+      <button type="submit" class="btn btn-primary" (click)="validate(StudentItem)">Submit</button>
+      <button type="submit" class="btn btn-primary" (click)="navigate(StudentItem.serial,StudentItem.File)">Upload New File</button>
+    </form>
+  </div>
+</div>

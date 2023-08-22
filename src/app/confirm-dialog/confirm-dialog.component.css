@@ -1,0 +1,29 @@
+.small-button{
+    border: none;
+    background-color: #0c2461;
+    backdrop-filter: 2px;
+    width: 80px;
+    height: 25px;
+    opacity: .9;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    font-size: 13px;
+    box-shadow: 0px 0px 2px 2px rgb(181, 179, 241);
+    color: white;
+  }
+  .small-button2{
+    border: none;
+    background-color: #0c2461;
+    backdrop-filter: 2px;
+    width: fit-content;
+    height: 25px;
+    opacity: .9;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    font-size: 13px;
+    box-shadow: 0px 0px 2px 2px rgb(181, 179, 241);
+    color: white;
+    margin-left: 15px;
+    margin-right: 5%;
+  }
+  

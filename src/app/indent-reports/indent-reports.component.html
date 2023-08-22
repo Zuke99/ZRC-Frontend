@@ -1,0 +1,188 @@
+
+<head>
+    <script src="https://kit.fontawesome.com/a34cd9e59d.js" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<div class="container">
+  <ng-container *ngIf="getUserRole() === 'MasterAdmin' || getUserRole() === 'Contributor'">
+  <h3 style="text-align: center;">Indent Report</h3>
+    <form>
+
+        <i class="fa-solid fa-magnifying-glass icon"></i>
+        <input  [(ngModel)]="searchInput"  [ngModelOptions]="{standalone:true}" matInput type="text" (input)="search()" [matAutocomplete]="auto" placeholder="Enter PH Number or Product Name"/>
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let item of integerResults ; index as i" [value]="item" (click)="selectResult(item.product_name)" [class.grey-option]="i % 2 === 1">
+             
+                {{item.ph_number}} - 
+                {{item.product_name}}
+            </mat-option>
+        </mat-autocomplete>
+     
+        <button type="submit" (click)="getDetails()">Search</button>
+        </form> 
+<div class="date-div">
+        <div class="input-field">
+          <label for="formGroupExampleInput"> Indent Date From</label>
+          <input [(ngModel)]="indent_date_from" (dateChange)="getIndentRange()"   [ngModelOptions]="{standalone:true}" required   matInput [matDatepicker]="picker1" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1 ></mat-datepicker>
+      
+        </div>
+   
+        
+        <div class="input-field">
+          <label for="formGroupExampleInput"> Indent Date Upto</label>
+          <input [(ngModel)]="indent_date_upto" (dateChange)="getIndentRange()" [ngModelOptions]="{standalone:true}" required matInput [matDatepicker]="picker2" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2 ></mat-datepicker>
+  
+  </div>
+  <div class="input-field" *ngIf="indentTableVisible">
+  <label > Po Pending</label>
+  <input  [(ngModel)]="po_pending" [ngModelOptions]="{standalone:true}" id="poIsChecked" (change)="getIndentRange()" type="checkbox"   >
+ 
+  </div>
+
+<div class="input-field" *ngIf="indentTableVisible">
+  <label> Supply Pending </label>
+  <input  [(ngModel)]="supply_pending" [ngModelOptions]="{standalone:true}" id="supplyIsChecked" (change)="getIndentRange()" type="checkbox"  >
+ 
+</div>
+ 
+  </div>
+
+  
+  <button style="margin-left: 65%; margin-top: 1%;" class="show-button" (click)="toggleButtonFunction()">{{indentTableVisible ? "Show User Reports" : "Show Admin Reports"}}</button>
+  <label class="label-count" *ngIf="indentTableVisible">Count : {{indentData.length}}</label>   
+        <div class="table-indent-div" *ngIf="indentTableVisible">
+  
+            <table >
+                <thead>
+                  <tr>
+                    <th>Serial</th>
+                    <th>Indent Date</th>
+                    <th>PH Number</th>
+                    <th>Product Name</th>
+                    <th>Indented Qty</th>
+                    <th>ZRC No and Date </th>
+                    <th>ZRC FY</th>
+                    <th>PO Status</th>
+                    <th>Supply</th>
+                    <th>View Indent Letter</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let details of indentData ; let i  = index">
+                  <tr [ngClass]="{'table-row-even': i % 2 === 0, 'table-row-odd': i % 2 !== 0}">
+                    <td>{{i+1}}</td>
+                    <td>{{details.date_of_indent | date : 'dd/MM/yyyy'}}</td>
+                    <td>{{details.ph_number}}</td>
+                    <td>{{details.product_name}}</td>
+                    <td>{{details.qty_required}}</td>
+                    <td>{{details.zrc_number}} ZRC Dt.{{details.zrc_date | date : 'dd/MM/yyyy'}} Valid From {{details.zrc_valid_from | date : 'dd/MM/yyyy'}} to {{details.zrc_valid_upto | date : 'dd/MM/yyyy'}}</td>
+                    <td>{{details.zrc_fy}}</td>
+                    <td>
+                      <input class="po_checkbox" [(ngModel)]="details.po_status" [ngModelOptions]="{standalone:true}" type="checkbox" [id]="'po_checkbox' + i" [ngClass]="{'checked': details.po_status === 1}"  (change)="onCheckBoxChange(details)">
+                      <label class="checkbox-label" [attr.for]="'po_checkbox' + i"></label>
+                    </td>
+                    <td>
+                      <input class="supply_checkbox" [(ngModel)]="details.supply_status" [ngModelOptions]="{standalone:true}" type="checkbox" [id]="'supply_checkbox' + i" [ngClass]="{'checked': details.supply_status === 1}"   (change)="onCheckBoxChange(details)">
+                      <label class="checkbox-label" [attr.for]="'supply_checkbox' + i"></label>
+                    </td>
+                    
+                    <td><button class="small-button" (click)="viewIndentLetter(details.serial)">View</button></td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+        
+          </div>
+          </ng-container>
+
+
+
+          <!---*******************************USER INDENT REPORTS!!!!! ****************************-->
+<ng-container *ngIf="getUserRole() === 'User'">
+  <h3> Indent Reports</h3>
+          <form>
+
+            <i class="fa-solid fa-magnifying-glass icon"></i>
+            <input  [(ngModel)]="userSearchInput"  [ngModelOptions]="{standalone:true}" matInput type="text" (input)="userSearch()" [matAutocomplete]="auto2" placeholder="Enter PH Number or Product Name"/>
+            <mat-autocomplete #auto2="matAutocomplete">
+                <mat-option *ngFor="let item of integerResults ; index as i" [value]="item" (click)="userSelectResult(item.product_name)" [class.grey-option]="i % 2 === 1">
+                 
+                    {{item.ph_number}} - 
+                    {{item.product_name}}
+                </mat-option>
+            </mat-autocomplete>
+         
+            <button type="submit" (click)="userGetDetails()">Search</button>
+            </form> 
+            <div class="date-div">
+        <div class="input-field">
+          <label for="formGroupExampleInput"> Indent Date From</label>
+          <input [(ngModel)]="user_indent_date_from" (dateChange)="userGetIndentRange()"   [ngModelOptions]="{standalone:true}" required   matInput [matDatepicker]="picker10" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker10"></mat-datepicker-toggle>
+          <mat-datepicker #picker10 ></mat-datepicker>
+      
+        </div>
+   
+        
+        <div class="input-field">
+          <label for="formGroupExampleInput"> Indent Date Upto</label>
+          <input [(ngModel)]="user_indent_date_upto" (dateChange)="userGetIndentRange()" [ngModelOptions]="{standalone:true}" required matInput [matDatepicker]="picker20" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker20"></mat-datepicker-toggle>
+          <mat-datepicker #picker20 ></mat-datepicker>
+  
+  </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="getUserRole() === 'User' || toggleUserIndentTable">
+  <label class="label-count" *ngIf="toggleUserIndentTable">Count : {{indentData.length}}</label>   
+        <div class="table-indent-div">
+  
+            <table >
+                <thead>
+                  <tr>
+                    <th>Serial</th>
+                    <th>Indent Date</th>
+                    <th>PH Number</th>
+                    <th>Product Name</th>
+                    <th>Indented Qty</th>
+                    <th>ZRC No and Date </th>
+                    <th>ZRC FY</th>
+                    <th>Status</th>
+                    <th>Executive</th>
+                    <th *ngIf="toggleUserIndentTable">Requested By</th>
+                    <th>View Indent Letter</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let details of indentData ; let i  = index">
+                  <tr [ngClass]="{'table-row-even': i % 2 === 0, 'table-row-odd': i % 2 !== 0}">
+                    <td>{{i+1}}</td>
+                    <td>{{details.date_of_indent | date : 'dd/MM/yyyy'}}</td>
+                    <td>{{details.ph_number}}</td>
+                    <td>{{details.product_name}}</td>
+                    <td>{{details.qty_required}}</td>
+                    <td>{{details.zrc_number}} ZRC Dt.{{details.zrc_date | date : 'dd/MM/yyyy'}} Valid From {{details.zrc_valid_from | date : 'dd/MM/yyyy'}} to {{details.zrc_valid_upto | date : 'dd/MM/yyyy'}}</td>
+                    <td>{{details.zrc_fy}}</td>
+                    <td ><label [ngClass]="{ 'Approved' : getStatus(details.approval_status)==='Approved' , 
+                      'Pending' : getStatus(details.approval_status)==='Pending',
+                  'Rejected' : getStatus(details.approval_status)==='Rejected'} ">{{getStatus(details.approval_status)}}</label><br/>
+                <span *ngIf="details.approval_status === 'Rejected'">Reason : {{details.reject_remarks}}</span>
+                </td>
+                <td>{{details.executive}}</td>
+                 
+                    <td *ngIf="toggleUserIndentTable">{{details.user_name}}</td>
+                    <td><button class="small-button" (click)="userViewIndentLetter(details.serial)">View</button></td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+        
+          </div>
+
+        </ng-container>
+
+      
+</div>

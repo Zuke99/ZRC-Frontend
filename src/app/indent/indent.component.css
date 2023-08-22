@@ -1,0 +1,75 @@
+.card {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .table-div {
+    margin-top: 20px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .th-name {
+    width: 200px;
+  }
+  
+  th,
+  td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+  }
+  
+  th:first-child,
+  td:first-child {
+    width: 50px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .valid-feedback,
+  .invalid-feedback {
+    display: none;
+    font-size: 12px;
+    margin-top: 4px;
+    color: #28a745;
+  }
+  
+  .invalid-feedback {
+    color: #dc3545;
+  }
+  
+  .form-check {
+    margin-top: 10px;
+  }
+  
+  .sub-button {
+    margin-top: 20px;
+  }
+
+  

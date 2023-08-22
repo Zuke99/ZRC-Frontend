@@ -1,0 +1,74 @@
+
+<div class="container">
+<h3>ZRC Reports</h3>
+<div class="content">
+    <div class="input-field">
+        <label>Show all ZRCs from FY  &nbsp;&nbsp;&nbsp;</label>
+        
+        <select [(ngModel)]="zrc_fy" [ngModelOptions]="{standalone:true}"  (change)="loadZrcData()"  required >
+         <!-- <option>2020 - 21</option> -->
+         <option>Show All</option>
+          <option *ngFor="let years of dropDownValues" [value]="years.zrc_fy"  >{{years.zrc_fy}}</option>
+          <!-- <div class="valid-feedback">Valid.</div>
+          <div class="invalid-feedback">Please fill out this field.</div> -->
+        </select>
+       <label style="margin-left: 25%;">Count : {{zrcData.length}}</label>   
+
+       <label style="margin-left: 20%;">ZRC Expiring within  &nbsp;&nbsp;&nbsp;</label>
+        
+       <select [(ngModel)]="month" [ngModelOptions]="{standalone:true}" (change)="expiringZrcs()"   required >
+        <!-- <option>2020 - 21</option> -->
+       
+         <option *ngFor="let i of months" [value]="i">{{i}}</option>
+         <!-- <div class="valid-feedback">Valid.</div>
+         <div class="invalid-feedback">Please fill out this field.</div> -->
+       </select>
+       <label> &nbsp;Months  </label>
+        
+        </div>
+
+        <div class="table-expiry-div">
+  
+            <table >
+                <thead>
+                  <tr>
+                    <th>Serial</th>
+                    <th style="min-width: 80px;">ZRC FY</th>
+                    <th >Product Name</th>
+                    <th>PH Number</th>
+                    <th>Supplier Name</th>
+                    <th>ZRC Number</th>
+                    <th>ZRC Date</th>
+                    <th>Quantity</th>
+                    <th>ZRC Valid From</th>
+                    <th>ZRC Valid Upto</th>
+                    <th>Balance</th>
+                    <th>Remarks</th>
+                    <th>View ZRC</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let details of zrcData ; let i  = index">
+                  <tr [ngClass]="{'table-row-even': i % 2 === 0, 'table-row-odd': i % 2 !== 0}">
+                    <td>{{i+1}}</td>
+                    <td>{{details.zrc_fy}}</td>
+                    <td>{{details.product_name}}</td>
+                    <td>{{details.ph_number}}</td>
+                    <td>{{details.supplier_name}}</td>
+                    <td>{{details.zrc_number}}</td>
+                    <td>{{details.zrc_date | date : 'dd/MM/yyyy'}}</td>
+                    <td>{{details.qty}}</td>
+                    <td>{{details.zrc_valid_from | date : 'dd/MM/yyyy'}}</td>
+                    <td><p [ngClass]="{'expired-row': getRowColor(details.zrc_valid_upto) === 'expired-row', 'valid-row': getRowColor(details.zrc_valid_upto) === 'valid-row'}">{{details.zrc_valid_upto | date : 'dd/MM/yyyy'}}</p></td>
+                    <td><p  [ngClass]="{'expired-balance-row': getBalanceRowColor(details.Balance) === 'expired-balance-row', 'valid-balance-row': getBalanceRowColor(details.Balance) === 'valid-balance-row'}">{{details.Balance}}</p></td>
+                    <td>{{details.remarks}}</td>
+                    <td><button class="small-button" (click)="viewZRC(details.file)">View</button></td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+        
+          </div>
+          
+
+</div>
+</div>

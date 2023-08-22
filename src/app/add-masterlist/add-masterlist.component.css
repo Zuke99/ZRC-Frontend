@@ -1,0 +1,29 @@
+.container{
+    margin-top: 10%;
+}
+input:required:valid,
+select:required:valid {
+  border-color: #28a745;
+}
+
+.was-validated input:required:invalid,
+.was-validated select:required:invalid {
+  border-color: #dc3545;
+}
+
+.was-validated input:required:valid,
+.was-validated select:required:valid {
+  border-color: #28a745;
+}
+
+.valid-feedback,
+.invalid-feedback {
+  display: none;
+  font-size: 12px;
+  margin-top: 4px;
+  color: #28a745;
+}
+
+.invalid-feedback {
+  color: #dc3545;
+}

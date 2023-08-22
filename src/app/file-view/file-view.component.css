@@ -1,0 +1,21 @@
+.container{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+
+}
+.viewer{
+    width: 100%;
+    margin: 5%;
+}
+button{
+    background-color: #e55039;
+    color: #fff;
+
+}
+.custom-dialog-container {
+    position: absolute; /* or position: relative; */
+  }
+  .custom-backdrop {
+    position: fixed;
+  }

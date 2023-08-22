@@ -1,0 +1,604 @@
+
+<div class="card" >
+  
+   <h1><strong>ZRC Indent Form</strong></h1>
+
+
+<ng-container *ngIf="thisGetResourceEdit=== false  &&  (getUserRole() === 'Contributor' || getUserRole() === 'MasterAdmin')">
+
+<label class="inline">No.MD/{{69}}/Stores/{{financialYear}}/ZRC/{{indents_sl}}</label>
+<label class="inline">Dt {{today_date | date: 'dd/MM/yyyy'}}</label>
+
+
+<div class="table-div" *ngFor="let data of zrcArray">
+<form class="needs-validation">
+    <table class="table">
+        <tbody >
+            <tr>
+                <th scope="row">01</th>
+                <th class="th-name">Product Code</th>
+                <td>{{data.ph_number}}</td>
+            </tr>
+
+            <tr>
+                <th scope="row">02</th>
+                <th class="th-name">Name Of the Drug</th>
+                <td>{{data.product_name}}</td>
+            </tr>
+            <tr>
+                <th scope="row">03</th>
+                <th class="th-name">ZRC Balance Available</th>
+                <td>{{data.Balance}}</td>
+            </tr>
+
+            
+
+            <tr>
+                <th scope="row">04</th>
+                <th class="th-name">Quantity Required</th>
+                <td><input [(ngModel)]="qty_required" [ngModelOptions]="{standalone:true}" required    class="form-control form-control-sm" type="number" (keypress)="onlyNumbers($event)"></td>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </tr>
+
+
+
+            <tr>
+                <th scope="row">05</th>
+                <th class="th-name">ZRC No</th>
+                <td>{{data.zrc_number}} Dt. {{data.zrc_valid_from | date:'dd/MM/yyyy'}} valid upto {{data.zrc_valid_upto | date: "dd/MM/yyyy"}}</td>
+            </tr>
+
+        
+            <tr>
+                <th scope="row">06</th>
+                <th class="th-name">Whether it is a product in IRP and whether it is a Proprietary/ Non-Proprietary product (Strike out whichever is not applicable)</th>
+                <td><div class="form-check">
+                    <input [(ngModel)]="irpYesNo" [ngModelOptions]="{standalone:true}" (ngModelChange)="irpTextBox = 'Yes ,   PAC “C” Product'" class="form-check-input" type="radio" name="flexRadioDefault5" id="flexRadioDefault5" [value]="'yes'" required>
+                    <label class="form-check-label" for="flexRadioDefault5">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input [(ngModel)]="irpYesNo" [ngModelOptions]="{standalone:true}" (ngModelChange)="irpTextBox = 'Non Proprietary'"  class="form-check-input" type="radio" name="flexRadioDefault5" id="flexRadioDefault6" [value]="'no'" checked required>
+                    <label class="form-check-label" for="flexRadioDefault6">
+                     No
+                    </label>
+                  </div>
+                  <input type="text" [(ngModel)]="irpTextBox" [ngModelOptions]="{standalone:true}"   class="form-control form-control-sm" required>
+                </td>
+            </tr>
+       
+            <tr>
+                <th scope="row">07</th>
+                <th class="th-name">If it is a listed product, was it indented in AMI –Yes/No</th>
+                <td><div class="form-check">
+                    <input [(ngModel)]="indent_ami" [ngModelOptions]="{standalone:true}" class="form-check-input" type="radio" name="flexRadioDefault7" id="flexRadioDefault7" [value]="'yes'" required>
+                    <label class="form-check-label" for="flexRadioDefault7">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input [(ngModel)]="indent_ami" [ngModelOptions]="{standalone:true}" class="form-check-input" type="radio" name="flexRadioDefault7" id="flexRadioDefault7" [value]="'no'" checked required>
+                    <label class="form-check-label" for="flexRadioDefault7">
+                     No
+                    </label>
+                  </div>
+                 
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row">08</th>
+                <th class="th-name">Quantity indented in Annual Indent</th>
+                <td>{{data.qty}}</td>
+            </tr>
+
+            <tr>
+                <th scope="row">09</th>
+                <th class="th-name">Quantity Passed by PCMD</th>
+                <td>{{data.qty}}</td>
+            </tr>
+
+            <tr>
+                <th scope="row">10</th>
+                <th class="th-name">Quantity Indented through above  ZRC till date</th>
+                <td><input [(ngModel)]="result" [ngModelOptions]="{standalone:true}" required     class="form-control form-control-sm" type="number" (keypress)="onlyNumbers($event)"></td>
+            </tr>
+
+            <tr>
+                <th scope="row">11</th>
+                <th class="th-name">Quantity Received through above  ZRC till date</th>
+                <td><input [(ngModel)]="qty_recd" [ngModelOptions]="{standalone:true}" required     class="form-control form-control-sm" type="number" (keypress)="onlyNumbers($event)"></td>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </tr>
+
+            <tr>
+                <th scope="row">12</th>
+                <th class="th-name">Quantity indented through Supplementary indent from
+                    <mat-form-field class="ff">
+                        <input [(ngModel)]="qty_indented_supl_date" [ngModelOptions]="{standalone:true}" matInput [matDatepicker]="picker3" required placeholder="Choose a date">
+                        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                        <mat-datepicker #picker3 ></mat-datepicker>
+                      </mat-form-field> if any
+                   </th>
+                <td><input [(ngModel)]="qty_indented_supl" [ngModelOptions]="{standalone:true}" required     class="form-control form-control-sm" type="number" (keypress)="onlyNumbers($event)"></td>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </tr>
+
+            <tr>
+                <th scope="row">13</th>
+                <th class="th-name">Quantity Received through AMI/Supplementary indent from <mat-form-field class="ff">
+                    <input [(ngModel)]="qty_recd_supl_date" [ngModelOptions]="{standalone:true}"  matInput [matDatepicker]="picker" required placeholder="Choose a date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker ></mat-datepicker>
+                  </mat-form-field> if any</th>
+                <td><input [(ngModel)]="qty_recd_supl" [ngModelOptions]="{standalone:true}" required    class="form-control form-control-sm" type="number"  (keypress)="onlyNumbers($event)"> </td>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </tr>
+
+            <tr>
+                <th scope="row">14</th>
+                <th class="th-name">Expended Quantity from <mat-form-field class="ff">
+                    <input [(ngModel)]="qty_expended_date" [ngModelOptions]="{standalone:true}"  matInput [matDatepicker]="picker4" required placeholder="Choose a date">
+                    <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                    <mat-datepicker #picker4 ></mat-datepicker>
+                  </mat-form-field> </th>
+                <td><input [(ngModel)]="qty_expended" [ngModelOptions]="{standalone:true}" required    class="form-control form-control-sm" type="number"  (keypress)="onlyNumbers($event)"> </td>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </tr>
+
+
+
+            <tr>
+                <th scope="row">15</th>
+                <th class="th-name">Balance on hand </th>
+                <td><input [(ngModel)]="balance_hand" [ngModelOptions]="{standalone:true}"   class="form-control form-control-sm" type="number" (keypress)="onlyNumbers($event)" required></td>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </tr>
+          
+          
+            <tr>
+                <th scope="row">16</th>
+                <th class="th-name">If all the quantity supplied has been received, reason for additional quantity
+                    (Give brief reasons)
+                    </th>
+                <td><input [(ngModel)]="qty_additional" [ngModelOptions]="{standalone:true}" class="form-control form-control-sm" type="text"
+                    required></td>
+             
+            </tr>
+
+            <tr>
+                <th scope="row">17</th>
+                <th class="th-name">Is there any equal substitute is available in stock-Yes/No</th>
+                <td><div class="form-check">
+                    <input [(ngModel)]="equal_substitute" [ngModelOptions]="{standalone:true}" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" [value]="'yes'" required>
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input [(ngModel)]="equal_substitute" [ngModelOptions]="{standalone:true}" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" [value]="'no'" checked required>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                     No
+                    </label>
+                  </div>
+                 
+                </td>
+            </tr>
+           
+
+            <tr>
+                <th scope="row">18</th>
+                <th class="th-name">By what date your stock will be exhausted and fresh supply should reach you.</th>
+                <td><input [(ngModel)]="fresh_stock_date" [ngModelOptions]="{standalone:true}" class="form-control form-control-sm" type="text"
+                    required></td>
+             
+            </tr>
+
+            <tr>
+                <th scope="row">19</th>
+                <th class="th-name">In case you have less than six weeks stock, give reasons why demand was not forwarded to PCMD (with remarks if any)
+
+                </th>
+                <td><input [(ngModel)]="remarks" [ngModelOptions]="{standalone:true}" class="form-control form-control-sm" type="text"
+                     required></td>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </tr>
+            <!-- <ng-container  *ngIf="getUserRole() === 'Contributor' || getUserRole() === 'MasterAdmin'"> -->
+            <tr>
+                <th scope="row">20</th>
+                <th class="th-name">Last Indent date & Qty <mat-form-field class="ff">
+                    <input [(ngModel)]="last_indent_date" [ngModelOptions]="{standalone:true}" matInput [matDatepicker]="picker1" placeholder="Choose a date">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1 ></mat-datepicker>
+                  </mat-form-field></th>
+                <td><input [(ngModel)]="qty_last_indent" [ngModelOptions]="{standalone:true}"   class="form-control form-control-sm" type="number" (keypress)="onlyNumbers($event)" ></td>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </tr>
+
+            <tr>
+                <th scope="Row">21</th>
+                <th class="th-name"> Remarks (if any)</th>
+                <td><input type="text" [(ngModel)]="extra_remarks" [ngModelOptions]="{standalone:true}"   class="form-control form-control-sm"></td>
+            </tr>
+
+            
+
+       
+
+
+        </tbody>
+    </table>   
+    
+   
+    <button type="submit" class="btn btn-primary sub-button" (click)="validate(data)" >Submit</button>
+   
+
+</form>    
+</div>   
+
+
+
+</ng-container>
+ 
+
+<!-- *******************  UPDATE INDENT  ****************************-->
+
+
+
+    <ng-container *ngIf="thisGetResourceEdit">
+    <ng-container *ngFor="let data of editIndentArray">       
+<label class="inline" >No.MD/{{69}}/Stores/{{data.fy}}/ZRC/{{data.indents_sl}}</label>
+<label class="inline">Dt {{data.date_of_indent | date: 'dd/MM/yyyy'}}</label>
+
+
+<div class="table-div" >
+<form class="needs-validation"  >
+    <table class="table">
+        <tbody>
+            <tr>
+                <th scope="row">01</th>
+                <th class="th-name">Product Code</th>
+                <td>{{data.ph_number}}</td>
+            </tr>
+
+            <tr>
+                <th scope="row">02</th>
+                <th class="th-name">Name Of the Drug</th>
+                <td>{{data.product_name}}</td>
+            </tr>
+            <tr>
+                <th scope="row">03</th>
+                <th class="th-name">ZRC Balance Available</th>
+                <td>{{data.balance_available}}</td>
+            </tr>
+
+            
+
+            <tr>
+                <th scope="row">04</th>
+                <th class="th-name">Quantity Required</th>
+                <td><input [(ngModel)]="data.qty_required" [ngModelOptions]="{standalone:true}" required    class="form-control form-control-sm" type="number" (keypress)="onlyNumbers($event)"></td>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </tr>
+
+
+
+            <tr>
+                <th scope="row">05</th>
+                <th class="th-name">ZRC No</th>
+                <td>{{data.zrc_number}} Dt. {{data.zrc_valid_from | date:'dd/MM/yyyy'}} valid upto {{data.zrc_valid_upto | date: "dd/MM/yyyy"}}</td>
+            </tr>
+            <tr>
+                <th scope="row">06</th>
+                <th class="th-name">Whether it is a product in IRP and whether it is a Proprietary/ Non-Proprietary product (Strike out whichever is not applicable)</th>
+                <td><div class="form-check">
+                    <input [(ngModel)]="irpYesNo" [ngModelOptions]="{standalone:true}" (ngModelChange)="data.irpTextBox = 'Yes ,   PAC “C” Product'" class="form-check-input" type="radio" name="flexRadioDefault5" id="flexRadioDefault5" [value]="'yes'" required>
+                    <label class="form-check-label" for="flexRadioDefault5">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input [(ngModel)]="irpYesNo" [ngModelOptions]="{standalone:true}" (ngModelChange)="data.irpTextBox = 'No'"  class="form-check-input" type="radio" name="flexRadioDefault5" id="flexRadioDefault6" [value]="'no'" checked required>
+                    <label class="form-check-label" for="flexRadioDefault6">
+                     No
+                    </label>
+                  </div>
+                  <input type="text" [(ngModel)]="data.irpTextBox" [ngModelOptions]="{standalone:true}"   class="form-control form-control-sm" required>
+                </td>
+            </tr>
+        
+            <tr>
+                <th scope="row">07</th>
+                <th class="th-name">If it is a listed product, was it indented in AMI –Yes/No</th>
+                <td><div class="form-check">
+                    <input [(ngModel)]="data.indent_ami" [ngModelOptions]="{standalone:true}" class="form-check-input" type="radio" name="flexRadioDefault7" id="flexRadioDefault7" [value]="'yes'" required>
+                    <label class="form-check-label" for="flexRadioDefault7">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input [(ngModel)]="data.indent_ami" [ngModelOptions]="{standalone:true}" class="form-check-input" type="radio" name="flexRadioDefault7" id="flexRadioDefault7" [value]="'no'" checked required>
+                    <label class="form-check-label" for="flexRadioDefault7">
+                     No
+                    </label>
+                  </div>
+                 
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row">08</th>
+                <th class="th-name">Quantity indented in Annual Indent</th>
+                <td>{{data.qty_annual_indent}}</td>
+            </tr>
+
+            <tr>
+                <th scope="row">09</th>
+                <th class="th-name">Quantity Passed by PCMD</th>
+                <td>{{data.qty_pcmd}}</td>
+            </tr>
+
+            <tr>
+                <th scope="row">10</th>
+                <th class="th-name">Quantity Indented through above  ZRC till date</th>
+                <td><input [(ngModel)]="data.qty_indented" [ngModelOptions]="{standalone:true}" required     class="form-control form-control-sm" type="number" (keypress)="onlyNumbers($event)"></td>
+            </tr>
+
+            <tr>
+                <th scope="row">11</th>
+                <th class="th-name">Quantity Received through above  ZRC till date</th>
+                <td><input [(ngModel)]="data.qty_recd" [ngModelOptions]="{standalone:true}" required     class="form-control form-control-sm" type="number" (keypress)="onlyNumbers($event)"></td>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </tr>
+
+            <tr>
+                <th scope="row">12</th>
+                <th class="th-name">Quantity indented through Supplementary indent from
+                    <mat-form-field class="ff">
+                        <input [(ngModel)]="data.qty_indented_supl_date" [ngModelOptions]="{standalone:true}" matInput [matDatepicker]="picker3" required placeholder="Choose a date">
+                        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                        <mat-datepicker #picker3 ></mat-datepicker>
+                      </mat-form-field> if any
+                   </th>
+                <td><input [(ngModel)]="data.qty_indented_supl" [ngModelOptions]="{standalone:true}" required     class="form-control form-control-sm" type="number" (keypress)="onlyNumbers($event)"></td>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </tr>
+
+            <tr>
+                <th scope="row">13</th>
+                <th class="th-name">Quantity Received through AMI/Supplementary indent from <mat-form-field class="ff">
+                    <input [(ngModel)]="data.qty_recd_supl_date" [ngModelOptions]="{standalone:true}"  matInput [matDatepicker]="picker" required placeholder="Choose a date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker ></mat-datepicker>
+                  </mat-form-field> if any</th>
+                <td><input [(ngModel)]="data.qty_recd_supl" [ngModelOptions]="{standalone:true}" required    class="form-control form-control-sm" type="number"  (keypress)="onlyNumbers($event)"> </td>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </tr>
+
+            <tr>
+                <th scope="row">14</th>
+                <th class="th-name">Expended Quantity from <mat-form-field class="ff">
+                    <input [(ngModel)]="data.qty_expended_date" [ngModelOptions]="{standalone:true}"  matInput [matDatepicker]="picker4" required placeholder="Choose a date">
+                    <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                    <mat-datepicker #picker4 ></mat-datepicker>
+                  </mat-form-field> </th>
+                <td><input [(ngModel)]="data.qty_expended" [ngModelOptions]="{standalone:true}" required    class="form-control form-control-sm" type="number"  (keypress)="onlyNumbers($event)"> </td>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </tr>
+
+            <tr>
+                <th scope="row">15</th>
+                <th class="th-name">Balance on hand </th>
+                <td><input [(ngModel)]="data.balance_hand" [ngModelOptions]="{standalone:true}"   class="form-control form-control-sm" type="number" (keypress)="onlyNumbers($event)" required></td>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </tr>
+
+            <tr>
+                <th scope="row">16</th>
+                <th class="th-name">If all the quantity supplied has been received, reason for additional quantity
+                    (Give brief reasons)
+                    </th>
+                <td><input [(ngModel)]="data.qty_additional" [ngModelOptions]="{standalone:true}" class="form-control form-control-sm" type="text"
+                    required></td>
+             
+            </tr>
+
+            <tr>
+                <th scope="row">17</th>
+                <th class="th-name">Is there any equal substitute is available in stock-Yes/No</th>
+                <td><div class="form-check">
+                    <input [(ngModel)]="data.equal_substitute" [ngModelOptions]="{standalone:true}" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" [value]="'yes'" required>
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input [(ngModel)]="data.equal_substitute" [ngModelOptions]="{standalone:true}" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" [value]="'no'" checked required>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                     No
+                    </label>
+                  </div>
+                 
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row">18</th>
+                <th class="th-name">By what date your stock will be exhausted and fresh supply should reach you.</th>
+                <td><input [(ngModel)]="data.fresh_stock_date" [ngModelOptions]="{standalone:true}" class="form-control form-control-sm" type="text"
+                    required></td>
+             
+            </tr>
+
+            <tr>
+                <th scope="row">19</th>
+                <th class="th-name">In case you have less than six weeks stock, give reasons why demand was not forwarded to PCMD (with remarks if any)
+
+                </th>
+                <td><input [(ngModel)]="data.remarks" [ngModelOptions]="{standalone:true}" class="form-control form-control-sm" type="text"
+                     required></td>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </tr>
+
+            <tr>
+                <th scope="row">20</th>
+                <th class="th-name">Last Indent date & Qty <mat-form-field class="ff">
+                    <input [(ngModel)]="data.last_indent_date" [ngModelOptions]="{standalone:true}" matInput [matDatepicker]="picker1" placeholder="Choose a date">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1 ></mat-datepicker>
+                  </mat-form-field></th>
+                <td><input [(ngModel)]="data.qty_last_indent" [ngModelOptions]="{standalone:true}"   class="form-control form-control-sm" type="number" (keypress)="onlyNumbers($event)" ></td>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </tr>
+
+            <tr>
+                <th scope="Row">21</th>
+                <th class="th-name"> Remarks (if any)</th>
+                <td><input type="text" [(ngModel)]="data.extra_remarks" [ngModelOptions]="{standalone:true}"   class="form-control form-control-sm"></td>
+            </tr>
+
+            
+
+            
+
+
+        </tbody>
+    </table>   
+    
+   
+    <button type="submit" class="btn btn-primary sub-button" (click)="validate(data)" >Update</button>
+   
+
+</form>    
+</div>   
+
+
+</ng-container>
+    </ng-container>
+
+
+    <!-- *****************************USER INDENT********************* -->
+
+
+    <ng-container *ngIf="getUserRole() === 'User'">
+
+    <label class="inline">No.MD/{{69}}/Stores/{{financialYear}}/ZRC/{{indents_sl}}</label>
+<label class="inline">Dt {{today_date | date: 'dd/MM/yyyy'}}</label>
+
+
+<div class="table-div" *ngFor="let data of zrcArray">
+<form class="needs-validation">
+    <table class="table">
+        <tbody >
+            <tr>
+                <th scope="row">01</th>
+                <th class="th-name">Product Code</th>
+                <td>{{data.ph_number}}</td>
+            </tr>
+
+            <tr>
+                <th scope="row">02</th>
+                <th class="th-name">Name Of the Drug</th>
+                <td>{{data.product_name}}</td>
+            </tr>
+            <tr>
+                <th scope="row">03</th>
+                <th class="th-name">ZRC Balance Available</th>
+                <td>{{data.Balance}}</td>
+            </tr>
+
+            
+
+            <tr>
+                <th scope="row">04</th>
+                <th class="th-name">Quantity Required</th>
+                <td><input [(ngModel)]="qty_required" [ngModelOptions]="{standalone:true}" required    class="form-control form-control-sm" type="number" (keypress)="onlyNumbers($event)"></td>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </tr>
+            <tr>
+                <th scope="row">05</th>
+                <th class="th-name">Whether it is a product in IRP and whether it is a Proprietary/ Non-Proprietary product (Strike out whichever is not applicable)</th>
+                <td><div class="form-check">
+                    <input [(ngModel)]="irpYesNo" [ngModelOptions]="{standalone:true}" (ngModelChange)="irpTextBox = 'Yes ,   PAC “C” Product'" class="form-check-input" type="radio" name="flexRadioDefault5" id="flexRadioDefault5" [value]="'yes'" required>
+                    <label class="form-check-label" for="flexRadioDefault5">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input [(ngModel)]="irpYesNo" [ngModelOptions]="{standalone:true}" (ngModelChange)="irpTextBox = 'Non Proprietary'"  class="form-check-input" type="radio" name="flexRadioDefault5" id="flexRadioDefault6" [value]="'no'" checked required>
+                    <label class="form-check-label" for="flexRadioDefault6">
+                     No
+                    </label>
+                  </div>
+                  <input type="text" [(ngModel)]="irpTextBox" [ngModelOptions]="{standalone:true}"   class="form-control form-control-sm" required>
+                </td>
+            </tr>
+
+
+
+            <tr>
+                <th scope="row">06</th>
+                <th class="th-name">ZRC No</th>
+                <td>{{data.zrc_number}} Dt. {{data.zrc_valid_from | date:'dd/MM/yyyy'}} valid upto {{data.zrc_valid_upto | date: "dd/MM/yyyy"}}</td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">07</th>
+                <th class="th-name">Balance on hand </th>
+                <td><input [(ngModel)]="balance_hand" [ngModelOptions]="{standalone:true}"   class="form-control form-control-sm" type="number" (keypress)="onlyNumbers($event)" required></td>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </tr>
+
+        
+            <tr>
+                <th scope="row">08</th>
+                <th class="th-name">By what date your stock will be exhausted and fresh supply should reach you.</th>
+                <td><input [(ngModel)]="fresh_stock_date" [ngModelOptions]="{standalone:true}" class="form-control form-control-sm" type="text"
+                    required></td>
+             
+            </tr>
+
+            <tr>
+                <th scope="row">09</th>
+                <th class="th-name">In case you have less than six weeks stock, give reasons why demand was not forwarded to PCMD (with remarks if any)
+
+                </th>
+                <td><input [(ngModel)]="remarks" [ngModelOptions]="{standalone:true}" class="form-control form-control-sm" type="text"
+                     required></td>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </tr>
+        </tbody>
+    </table>   
+    
+   
+    <button type="submit" class="btn btn-primary sub-button" (click)="validate(data)" >Submit</button>
+   
+
+</form>    
+</div>   
+
+</ng-container>
+
+
+</div>
