@@ -155,7 +155,7 @@ export class UpdateComponent {
   //Update Button Click
   update(studentItem: any) {
     if (this.checkDate() && this.updatebalance(studentItem)) {
-      this.zrc_date = studentItem.zrc_date;
+      //this.zrc_date = studentItem.zrc_date;
       //this.zrc_valid_from=studentItem.zrc_valid_from
 
       //   if(this.dateChange==false){
