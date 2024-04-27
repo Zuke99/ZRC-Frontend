@@ -47,7 +47,7 @@ export class UpdatefileComponent implements OnInit {
    const formData=new FormData();
    formData.append('file',this.images)
 
-   this.http.put("http://13.126.46.248:8085/api/zrc/updatefile"+"/"+this.serial,formData).subscribe((resultData:any)=>{
+   this.http.put("http://194.164.169.138:8085/api/zrc/updatefile"+"/"+this.serial,formData).subscribe((resultData:any)=>{
     console.log(resultData);
     alert("File Update Completed")
     console.log("closing dialog"+this.fileName)

@@ -94,7 +94,7 @@ export class UpdateComponent {
 
   //   search(){
 
-  //     this.http.get("http://13.126.46.248:8085/api/zrc"+"/"+this.ph_number)
+  //     this.http.get("http://194.164.169.138:8085/api/zrc"+"/"+this.ph_number)
   //     .subscribe((resultData:any)=>
   //     {
   //       this.isResultLoaded=true;
@@ -124,7 +124,7 @@ export class UpdateComponent {
   // Get ZRC by serial and Load in Textboxes
   getDetails() {
     this.http
-      .get('http://13.126.46.248:8085/api/zrc/indent' + '/' + this.serial)
+      .get('http://194.164.169.138:8085/api/zrc/indent' + '/' + this.serial)
       .subscribe((resultData: any) => {
 
         if(resultData.status === false){
@@ -233,7 +233,7 @@ export class UpdateComponent {
       };
       this.http
         .put(
-          'http://13.126.46.248:8085/api/zrc/update' + '/' + studentItem.serial,
+          'http://194.164.169.138:8085/api/zrc/update' + '/' + studentItem.serial,
           bodydata
         )
         .subscribe((resultData: any) => {
@@ -294,7 +294,7 @@ export class UpdateComponent {
 
   loadZrcFyDropDown() {
     this.http
-      .get('http://13.126.46.248:8085/api/zrc/tracker/zrcfyload')
+      .get('http://194.164.169.138:8085/api/zrc/tracker/zrcfyload')
       .subscribe((resultData: any) => {
        if(resultData.statu === false){
           alert("Failed To Load ZRC Financial Year DropDown")

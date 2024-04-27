@@ -16,6 +16,8 @@ import { RegisterComponent } from './register/register.component';
 import { AddMasterlistComponent } from './add-masterlist/add-masterlist.component';
 import { authGuard } from './auth.guard';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { PaymentGatewayComponent } from './payment-gateway/payment-gateway.component';
+import { PaymentSuccessfulComponent } from './payment-successful/payment-successful.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -57,6 +59,8 @@ const routes: Routes = [
     component: AddMasterlistComponent,
     canActivate: [authGuard],
   },
+  { path: 'payment-gateway', component:PaymentGatewayComponent },
+  { path: 'payment-successful', component:PaymentSuccessfulComponent}
 ];
 
 @NgModule({

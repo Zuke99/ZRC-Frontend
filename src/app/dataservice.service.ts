@@ -6,48 +6,48 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataserviceService {
-  private apiUrl='http://13.126.46.248:8085/api/zrc'
+  private apiUrl='http://194.164.169.138:8085/api/zrc'
   constructor(private http:HttpClient) { }
 
   fetchIntegers(searchTerm: string): Observable<{ ph_number: number, product_name: string }[]>{
-    const url="http://13.126.46.248:8085/api/zrc/searchvalues"+"/"+searchTerm;
+    const url="http://194.164.169.138:8085/api/zrc/searchvalues"+"/"+searchTerm;
     //const params=new HttpParams().set('search',searchTerm);
     return this.http.get<{ ph_number: number, product_name: string }[]>(url);
   }
 
   fetchStrings(searchTerm : string):Observable<{ ph_number: number, product_name: string }[]>{
-    const url="http://13.126.46.248:8085/api/zrc/searchvalues"+"/"+searchTerm;
+    const url="http://194.164.169.138:8085/api/zrc/searchvalues"+"/"+searchTerm;
    // const params=new HttpParams().set('search',searchTerm);
     return this.http.get<{ ph_number: number, product_name: string }[]>(url);
   }
 
   
   indentFetchIntegers(searchTerm: string): Observable<{ ph_number: number, product_name: string }[]>{
-    const url="http://13.126.46.248:8085/api/zrc/indentsearchvalues"+"/"+searchTerm;
+    const url="http://194.164.169.138:8085/api/zrc/indentsearchvalues"+"/"+searchTerm;
     //const params=new HttpParams().set('search',searchTerm);
     return this.http.get<{ ph_number: number, product_name: string }[]>(url);
   }
 
   indentFetchStrings(searchTerm : string):Observable<{ ph_number: number, product_name: string }[]>{
-    const url="http://13.126.46.248:8085/api/zrc/indentsearchvalues"+"/"+searchTerm;
+    const url="http://194.164.169.138:8085/api/zrc/indentsearchvalues"+"/"+searchTerm;
    // const params=new HttpParams().set('search',searchTerm);
     return this.http.get<{ ph_number: number, product_name: string }[]>(url);
   }
 
   fetchIntegersMaster(searchTerm: string): Observable<{ ph_number: number, product_name: string }[]>{
-    const url="http://13.126.46.248:8085/api/zrc/master/searchvalues"+"/"+searchTerm;
+    const url="http://194.164.169.138:8085/api/zrc/master/searchvalues"+"/"+searchTerm;
     //const params=new HttpParams().set('search',searchTerm);
     return this.http.get<{ ph_number: number, product_name: string }[]>(url);
   }
 
   fetchStringsMaster(searchTerm : string):Observable<{ ph_number: number, product_name: string }[]>{
-    const url="http://13.126.46.248:8085/api/zrc/master/searchvalues"+"/"+searchTerm;
+    const url="http://194.164.169.138:8085/api/zrc/master/searchvalues"+"/"+searchTerm;
    // const params=new HttpParams().set('search',searchTerm);
     return this.http.get<{ ph_number: number, product_name: string }[]>(url);
   }
 
   userIndentFetchIntegers(searchTerm: string, user_name : string, masterReq : boolean): Observable<{ ph_number: number, product_name: string }[]>{
-    const url="http://13.126.46.248:8085/api/zrc/userindentsearchvalues"+"/"+searchTerm;
+    const url="http://194.164.169.138:8085/api/zrc/userindentsearchvalues"+"/"+searchTerm;
     //const params=new HttpParams().set('search',searchTerm);
     let bodyData={
       user_name: user_name,
@@ -61,7 +61,7 @@ export class DataserviceService {
       user_name: user_name,
       masterReq:masterReq
     }
-    const url="http://13.126.46.248:8085/api/zrc/userindentsearchvalues"+"/"+searchTerm;
+    const url="http://194.164.169.138:8085/api/zrc/userindentsearchvalues"+"/"+searchTerm;
    // const params=new HttpParams().set('search',searchTerm);
     return this.http.post<{ ph_number: number, product_name: string }[]>(url,bodyData);
   }

@@ -1,0 +1,62 @@
+<body>
+  <div class="container">
+   
+    <div class="App">
+      
+      <div class="app-header">
+        <h3>Zonal Rate Contract Renewal</h3>
+      </div>
+
+      <div class="app-body">
+        <ul>
+          <li>Please Subscribe to continue using our Services.</li>
+          <li>For any Feeback or Queries Please write us at ratecontractind@gmail.com . </li>
+          <li>Please Note down the Order ID and Payment ID for Reference.</li>
+        </ul>
+        <br/>
+        <p><strong>Please Choose The Plan Of Your Choice</strong> </p>
+
+        <div class="plans-container">
+          <div class="monthly-plan" [class.active]="selectedOption === 'Monthly'" (click)="selectOption('Monthly')">
+            <h5>Monthly Plan</h5>
+            <h4>450/-</h4>
+          </div>
+        
+          <div class="yearly-plan" [class.active]="selectedOption === 'Yearly'" (click)="selectOption('Yearly')">
+            <h5>Yearly Plan</h5>
+            <h4>4449/-</h4>
+            <small>-17%</small>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="app-footer">
+        <button class="pay-btn" (click)="checkout()">Proceed To Payment</button>
+      </div>
+
+
+
+      <!-- <header class="App-header">
+        <div class="plans-container">
+          <div class="monthly-plan" [class.active]="selectedOption === 'Monthly'" (click)="selectOption('Monthly')">
+            <h5>Monthly Plan</h5>
+            <h4>450/-</h4>
+          </div>
+        
+          <div class="yearly-plan" [class.active]="selectedOption === 'Yearly'" (click)="selectOption('Yearly')">
+            <h5>Yearly Plan</h5>
+            <h4>4449/-</h4>
+          </div>
+        </div>
+        <p>Please Choose A Plan Of Your Choice</p>
+
+        <button class="pay-btn" (click)="checkout()">Pay</button>
+      </header> -->
+    </div>
+  </div>
+
+
+  
+</body>
+    

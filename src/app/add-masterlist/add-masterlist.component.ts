@@ -45,7 +45,7 @@ submit(){
     "product_name":this.product_name,
     "ph_number":this.ph_number
   }
-  this.http.post("http://13.126.46.248:8085/api/zrc/master/addmaster",bodyData).subscribe((resultData : any) => {
+  this.http.post("http://194.164.169.138:8085/api/zrc/master/addmaster",bodyData).subscribe((resultData : any) => {
     (error : any) =>{
       console.log("Error Sending Master List Data")
     } 

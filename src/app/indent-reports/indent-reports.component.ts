@@ -133,7 +133,7 @@ export class IndentReportsComponent implements OnInit {
     console.log('parameter sent ', encodedParameter);
     this.http
       .get(
-        'http://13.126.46.248:8085/api/zrc/indentproduct' + '/' + encodedParameter
+        'http://194.164.169.138:8085/api/zrc/indentproduct' + '/' + encodedParameter
       )
       .subscribe((resultData: any) => {
         (error: any) => {
@@ -219,7 +219,7 @@ export class IndentReportsComponent implements OnInit {
       .set('supply_status', this.supply_pending);
 
     this.http
-      .get('http://13.126.46.248:8085/api/zrc/indent/getindentrange', {
+      .get('http://194.164.169.138:8085/api/zrc/indent/getindentrange', {
         params: params,
       })
       .subscribe((resultData: any) => {
@@ -280,7 +280,7 @@ export class IndentReportsComponent implements OnInit {
       };
 
       this.http
-        .put('http://13.126.46.248:8085/api/zrc/indentreport/status', bodyData)
+        .put('http://194.164.169.138:8085/api/zrc/indentreport/status', bodyData)
         .subscribe((resultData: any) => {
           (error: any) => {
             console.log('error updating CheckBox Status', error);
@@ -288,7 +288,7 @@ export class IndentReportsComponent implements OnInit {
           console.log('success indent po status update' + resultData.data);
           this.http
             .put(
-              'http://13.126.46.248:8085/api/zrc/update/updatestatus' +
+              'http://194.164.169.138:8085/api/zrc/update/updatestatus' +
                 '/' +
                 details.zrc_serial,
               bodyData
@@ -346,7 +346,7 @@ export class IndentReportsComponent implements OnInit {
       indent_date_from : iso_zrc_date1,
       indent_date_upto : iso_zrc_valid_from2
     }
-    this.http.post("http://13.126.46.248:8085/api/zrc/userindent/getalluserindentrange",bodyData).subscribe((resultData : any) => {
+    this.http.post("http://194.164.169.138:8085/api/zrc/userindent/getalluserindentrange",bodyData).subscribe((resultData : any) => {
       if(resultData.status === "false"){
         alert("Search Failed")
         console.log(resultData)
@@ -427,7 +427,7 @@ export class IndentReportsComponent implements OnInit {
     }
     this.http
       .post(
-        'http://13.126.46.248:8085/api/zrc/userindentproduct' + '/' + encodedParameter, bodydata
+        'http://194.164.169.138:8085/api/zrc/userindentproduct' + '/' + encodedParameter, bodydata
       )
       .subscribe((resultData: any) => {
         (error: any) => {
@@ -478,7 +478,7 @@ export class IndentReportsComponent implements OnInit {
     }
 
     this.http
-      .post('http://13.126.46.248:8085/api/zrc/indent/usergetindentrange', bodyData)
+      .post('http://194.164.169.138:8085/api/zrc/indent/usergetindentrange', bodyData)
       .subscribe((resultData: any) => {
         (error: any) => {
           console.log('error getting indent range ', error);

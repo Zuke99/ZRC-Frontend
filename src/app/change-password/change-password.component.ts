@@ -47,7 +47,7 @@ export class ChangePasswordComponent implements OnInit{
 
   getUserDetails(){
     console.log("User Id ",this.auth.getUserId())
-    this.http.get("http://13.126.46.248:8085/api/zrc/user/usercredentials"+"/"+this.auth.getUserId()).subscribe((resultData : any) => {
+    this.http.get("http://194.164.169.138:8085/api/zrc/user/usercredentials"+"/"+this.auth.getUserId()).subscribe((resultData : any) => {
       if(resultData.status === 'false'){
         alert("Error getting data")
         console.log(resultData)
@@ -80,7 +80,7 @@ export class ChangePasswordComponent implements OnInit{
       security_question : this.security_question,
       security_answer:this.security_answer
     }
-    this.http.put("http://13.126.46.248:8085/api/zrc/user/update/usercredentails"+"/"+this.serial,bodyData).subscribe((resultData : any) => {
+    this.http.put("http://194.164.169.138:8085/api/zrc/user/update/usercredentails"+"/"+this.serial,bodyData).subscribe((resultData : any) => {
       if(resultData.status === 'false'){
         alert("Change Password Failed")
         console.log(resultData)
@@ -99,7 +99,7 @@ export class ChangePasswordComponent implements OnInit{
 
   checkUsername(){
 
-    this.http.get("http://13.126.46.248:8085/api/zrc/register/getuser"+"/"+this.username).subscribe((resultData : any) =>{
+    this.http.get("http://194.164.169.138:8085/api/zrc/register/getuser"+"/"+this.username).subscribe((resultData : any) =>{
       if(resultData.status === 'false'){
         alert("Error checking username")
         console.log(resultData)

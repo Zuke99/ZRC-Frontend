@@ -26,7 +26,7 @@ export class ZrcReportsComponent implements OnInit{
   }
 
   loadZrcFyDropDown(){
-    this.http.get("http://13.126.46.248:8085/api/zrc/tracker/zrcfyload").subscribe(( resultData : any) => {
+    this.http.get("http://194.164.169.138:8085/api/zrc/tracker/zrcfyload").subscribe(( resultData : any) => {
         (error : any) => {
           console.log("error getting data from tracker for zrcfy DropDown "+error)
         }
@@ -61,7 +61,7 @@ export class ZrcReportsComponent implements OnInit{
   console.log("zrc_fy insise LOAD ZRC",this.zrc_fy)
   let str: string = encodeURIComponent(this.zrc_fy.toString());
   
-    this.http.get("http://13.126.46.248:8085/api/zrctable/"+this.zrc_fy).subscribe((resultData : any) => {
+    this.http.get("http://194.164.169.138:8085/api/zrctable/"+this.zrc_fy).subscribe((resultData : any) => {
       (error : any) => {
         console.log("error getting data from zrc table",error)
       }
@@ -114,7 +114,7 @@ export class ZrcReportsComponent implements OnInit{
   }
 
   expiringZrcs(){
-    this.http.get("http://13.126.46.248:8085/api/zrc/expiring/expirydate"+"/"+this.month).subscribe((resultData : any) => {
+    this.http.get("http://194.164.169.138:8085/api/zrc/expiring/expirydate"+"/"+this.month).subscribe((resultData : any) => {
       (error : any)=>{
           console.log("error getting data from DB",error)
       } 

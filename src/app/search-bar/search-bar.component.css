@@ -10,6 +10,13 @@
     
  
 }
+.alert{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-top: 5%;
+  height: 70px;
+}
 
   
  form{

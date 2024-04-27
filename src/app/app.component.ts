@@ -46,7 +46,7 @@ export class AppComponent {
   //Checking Tracker Table for new Financial Year so that the Indents Serial gets refreshed to 1
   checkTrack() {
     this.http
-      .get('http://13.126.46.248:8085/api/zrc/tracker/lastyearchange')
+      .get('http://194.164.169.138:8085/api/zrc/tracker/lastyearchange')
       .subscribe((resultData: any) => {
         if (resultData.status === false) {
           console.log('Error Checking Track of Financial Year', resultData);
@@ -84,7 +84,7 @@ export class AppComponent {
       last_year_change: formattedDateTimeWithZeroTime1,
     };
     this.http
-      .put('http://13.126.46.248:8085/api/zrc/tracker/lastyearchange', bodyData)
+      .put('http://194.164.169.138:8085/api/zrc/tracker/lastyearchange', bodyData)
       .subscribe((resultData: any) => {
         if (resultData.status === false) {
           console.log('Failed to Update LastYearChange', resultData);
@@ -101,7 +101,7 @@ export class AppComponent {
       last_indent_sl: val,
     };
     this.http
-      .put('http://13.126.46.248:8085/api/zrc/tracker/updatelastsl', bodyData)
+      .put('http://194.164.169.138:8085/api/zrc/tracker/updatelastsl', bodyData)
       .subscribe((resultData: any) => {
         console.log(resultData.data);
       });

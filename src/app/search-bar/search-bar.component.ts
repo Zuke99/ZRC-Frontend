@@ -30,9 +30,12 @@ export class SearchBarComponent implements OnInit {
   serial: number;
   reject_remarks:string;
   textVisible = false;
+  showPaymentPendingAlert = false;
+  daysRemainingForSubscriptionExpiry : number;
 
   ngOnInit(): void {
     this.expiringZrcs();
+    this.showPaymentAlert();
 
     if (this.auth.getUserRole() === 'User') {
       console.log('Role : User');
@@ -41,6 +44,7 @@ export class SearchBarComponent implements OnInit {
       console.log('Role : MasterAdmin / Contributer');
       this.getAllUserIndents();
     }
+    
   }
   constructor(
     private dataService: DataserviceService,
@@ -57,6 +61,7 @@ export class SearchBarComponent implements OnInit {
     if (this.serial != -1) {
       this.searchExpiredZrc(this.serial);
     }
+
     //console.log(formattedDate);
     //console.log(new Date());
     //console.log(new Date().getTimezoneOffset());
@@ -105,7 +110,7 @@ export class SearchBarComponent implements OnInit {
     );
     //console.log("parameter sent ",encodedParameter)
     this.http
-      .get('http://13.126.46.248:8085/api/zrc/product' + '/' + encodedParameter)
+      .get('http://194.164.169.138:8085/api/zrc/product' + '/' + encodedParameter)
       .subscribe((resultData: any) => {
         if(resultData.status === false ){
           alert('Search Failed');
@@ -193,7 +198,7 @@ export class SearchBarComponent implements OnInit {
       };
       this.http
         .put(
-          'http://13.126.46.248:8085/api/zrc/userindent/updatestatus' +
+          'http://194.164.169.138:8085/api/zrc/userindent/updatestatus' +
             '/' +
             serial,
           bodyData
@@ -209,7 +214,7 @@ export class SearchBarComponent implements OnInit {
   placeUserIndent(details: any) {
     this.http
       .get(
-        'http://13.126.46.248:8085/api/zrc/getbyserial' + '/' + details.zrc_serial
+        'http://194.164.169.138:8085/api/zrc/getbyserial' + '/' + details.zrc_serial
       )
       .subscribe((resultData: any) => {
         this.userArray = resultData.data;
@@ -333,7 +338,7 @@ export class SearchBarComponent implements OnInit {
     };
     let month = 1;
     this.http
-      .get('http://13.126.46.248:8085/api/zrc/expiring/expirydate' + '/' + month)
+      .get('http://194.164.169.138:8085/api/zrc/expiring/expirydate' + '/' + month)
       .subscribe((resultData: any) => {
         if(resultData.status === false){
           console.log('error getting data from DB', resultData);
@@ -356,7 +361,7 @@ export class SearchBarComponent implements OnInit {
   //Getting Expired ZRC to View In Table
   searchExpiredZrc(data: any) {
     this.http
-      .get('http://13.126.46.248:8085/api/zrc/getbyserial' + '/' + data)
+      .get('http://194.164.169.138:8085/api/zrc/getbyserial' + '/' + data)
       .subscribe((resultData: any) => {
         if(resultData.status === false){
           alert("Error Getting ZRC info")
@@ -373,7 +378,7 @@ export class SearchBarComponent implements OnInit {
   //GET ALL USERS INDENT REQUESTS
   getAllUserIndents() {
     this.http
-      .get('http://13.126.46.248:8085/api/zrc/indents/getalluserindents')
+      .get('http://194.164.169.138:8085/api/zrc/indents/getalluserindents')
       .subscribe((resultData: any) => {
         if (resultData.message === 'error') {
           alert('Error getting Indent Requests');
@@ -388,7 +393,7 @@ export class SearchBarComponent implements OnInit {
   getUserIndents() {
     this.http
       .get(
-        'http://13.126.46.248:8085/api/zrc/indents/getuserindents' +
+        'http://194.164.169.138:8085/api/zrc/indents/getuserindents' +
           '/' +
           this.auth.getUserName()
       )
@@ -425,7 +430,7 @@ export class SearchBarComponent implements OnInit {
     };
     this.http
       .put(
-        'http://13.126.46.248:8085/api/zrc/userindent/update/markasread' +
+        'http://194.164.169.138:8085/api/zrc/userindent/update/markasread' +
           '/' +
           serial,
         bodydata
@@ -445,5 +450,28 @@ export class SearchBarComponent implements OnInit {
     this.service.setRequestSourceHomePage(true)
     this.router.navigate(['indent-letter'])
     
+  }
+
+  showPaymentAlert()  {
+    this.http.get("http://194.164.169.138:8085/api/zrc/payment/get-payment-details")
+    .subscribe((result: any) => {
+      if(result.status === false){
+        alert("Failed to get Payment Details");
+      } else {
+        const today = new Date()
+        const nextPaymentDate = new Date(result.data[0].next_payment_date)
+        const fifteenDaysFromNow = new Date();
+        fifteenDaysFromNow.setDate(fifteenDaysFromNow.getDate() + 15);
+        if(nextPaymentDate <= today){
+          alert("Your Subscrption has Expired")
+          this.router.navigateByUrl('/payment-gateway');
+          this.auth.logout();
+        }
+        else if (nextPaymentDate < fifteenDaysFromNow) {
+          this.daysRemainingForSubscriptionExpiry = Math.abs(fifteenDaysFromNow.getDate() - nextPaymentDate.getDate() - 15);
+          this.showPaymentPendingAlert = true;
+        }
+      }
+    })
   }
 }

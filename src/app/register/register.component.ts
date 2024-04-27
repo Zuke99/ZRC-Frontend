@@ -61,7 +61,7 @@ export class RegisterComponent implements OnInit{
       "name":this.name,
       "role":this.role
     }
-    this.http.post("http://13.126.46.248:8085/api/zrc/register/registeruser",bodyData).subscribe((resultData : any ) => {
+    this.http.post("http://194.164.169.138:8085/api/zrc/register/registeruser",bodyData).subscribe((resultData : any ) => {
       (error : any) => {
         console.log("Error Sending Resgister Details to Db", error)
       }
@@ -77,7 +77,7 @@ export class RegisterComponent implements OnInit{
 
   getAllUsers(){
     console.log("get all called")
-    this.http.get("http://13.126.46.248:8085/api/zrc/register/getuser"+"/"+this.username).subscribe((resultdata : any) => {
+    this.http.get("http://194.164.169.138:8085/api/zrc/register/getuser"+"/"+this.username).subscribe((resultdata : any) => {
       (error : any) => {
         console.log("error getting users", error)
       }
@@ -98,7 +98,7 @@ export class RegisterComponent implements OnInit{
 
   //Delete user form DB
   deleteUser(serial : number){
-    this.http.delete("http://13.126.46.248:8085/api/zrc/user/delete/deleteuser"+"/"+serial).subscribe((resultData : any) => {
+    this.http.delete("http://194.164.169.138:8085/api/zrc/user/delete/deleteuser"+"/"+serial).subscribe((resultData : any) => {
       alert(resultData.message)
       window.location.reload()
     } )

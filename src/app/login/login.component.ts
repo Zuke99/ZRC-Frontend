@@ -14,6 +14,7 @@ import { DownloadfileService } from '../downloadfile.service';
 export class LoginComponent implements OnInit {
   username: string;
   password: string;
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
     this.auth.logout();
   }
 
+
   //Validating Credentials and Logging In
   login() {
     let bodyData = {
@@ -33,7 +35,7 @@ export class LoginComponent implements OnInit {
       password: this.password,
     };
     this.http
-      .post('http://13.126.46.248:8085/api/zrc/login/loginuser', bodyData)
+      .post('http://194.164.169.138:8085/api/zrc/login/loginuser', bodyData)
       .subscribe((resultData: any) => {
         (error: any) => {
           console.log('Error sending login data', error);

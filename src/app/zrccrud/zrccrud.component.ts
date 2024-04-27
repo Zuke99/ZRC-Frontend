@@ -106,7 +106,12 @@ export class ZrccrudComponent {
   selectImage(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      console.log(file);
+      console.log("My File",file);
+      if (file.size >= 500 * 1024) {
+        alert("File size should be less than 500 KB");
+        this.images = null;
+        return; // Don't proceed further if file size is too large
+      }
       this.images = file;
     }
   }
@@ -153,6 +158,10 @@ export class ZrccrudComponent {
   }
 
   validate() {
+    if(this.images == null){
+      alert("File Missing");
+      return;
+    }
     var form = document.getElementsByClassName(
       'needs-validation'
     )[0] as HTMLFormElement;
@@ -165,7 +174,7 @@ export class ZrccrudComponent {
   }
   check() {
     this.http
-      .get('http://13.126.46.248:8085/api/zrc' + '/' + this.ph_number)
+      .get('http://194.164.169.138:8085/api/zrc' + '/' + this.ph_number)
       .subscribe((resultData: any) => {
         this.isResultLoaded = true;
         console.log(resultData.data);
@@ -277,7 +286,7 @@ export class ZrccrudComponent {
         file: this.file,
       };
       this.http
-        .post('http://13.126.46.248:8085/api/zrc/add', formData)
+        .post('http://194.164.169.138:8085/api/zrc/add', formData)
         .subscribe((resultData: any) => {
           console.log(resultData);
           alert('ZRC Registration Successful');
@@ -312,7 +321,7 @@ export class ZrccrudComponent {
   // Load DropDown Values for ZRC FY
   loadZrcFyDropDown() {
     this.http
-      .get('http://13.126.46.248:8085/api/zrc/tracker/zrcfyload')
+      .get('http://194.164.169.138:8085/api/zrc/tracker/zrcfyload')
       .subscribe((resultData: any) => {
       if(resultData. status === false){
         alert("Error Loading ZRC FY Dropdown")

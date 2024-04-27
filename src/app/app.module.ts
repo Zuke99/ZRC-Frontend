@@ -49,6 +49,8 @@ import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { AuthInterceptor } from './auth.interceptor';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { PaymentGatewayComponent } from './payment-gateway/payment-gateway.component';
+import { PaymentSuccessfulComponent } from './payment-successful/payment-successful.component';
 
 
 
@@ -78,7 +80,9 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     LoginComponent,
     AddMasterlistComponent,
     ConfirmDialogComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    PaymentGatewayComponent,
+    PaymentSuccessfulComponent,
     
   ],
  
