@@ -110,7 +110,7 @@ export class SearchBarComponent implements OnInit {
     );
     //console.log("parameter sent ",encodedParameter)
     this.http
-      .get('http://194.164.169.138:8085/api/zrc/product' + '/' + encodedParameter)
+      .get('http://79.99.41.29/api/zrc/product' + '/' + encodedParameter)
       .subscribe((resultData: any) => {
         if(resultData.status === false ){
           alert('Search Failed');
@@ -198,7 +198,7 @@ export class SearchBarComponent implements OnInit {
       };
       this.http
         .put(
-          'http://194.164.169.138:8085/api/zrc/userindent/updatestatus' +
+          'http://79.99.41.29/api/zrc/userindent/updatestatus' +
             '/' +
             serial,
           bodyData
@@ -214,7 +214,7 @@ export class SearchBarComponent implements OnInit {
   placeUserIndent(details: any) {
     this.http
       .get(
-        'http://194.164.169.138:8085/api/zrc/getbyserial' + '/' + details.zrc_serial
+        'http://79.99.41.29/api/zrc/getbyserial' + '/' + details.zrc_serial
       )
       .subscribe((resultData: any) => {
         this.userArray = resultData.data;
@@ -338,7 +338,7 @@ export class SearchBarComponent implements OnInit {
     };
     let month = 1;
     this.http
-      .get('http://194.164.169.138:8085/api/zrc/expiring/expirydate' + '/' + month)
+      .get('http://79.99.41.29/api/zrc/expiring/expirydate' + '/' + month)
       .subscribe((resultData: any) => {
         if(resultData.status === false){
           console.log('error getting data from DB', resultData);
@@ -361,7 +361,7 @@ export class SearchBarComponent implements OnInit {
   //Getting Expired ZRC to View In Table
   searchExpiredZrc(data: any) {
     this.http
-      .get('http://194.164.169.138:8085/api/zrc/getbyserial' + '/' + data)
+      .get('http://79.99.41.29/api/zrc/getbyserial' + '/' + data)
       .subscribe((resultData: any) => {
         if(resultData.status === false){
           alert("Error Getting ZRC info")
@@ -378,7 +378,7 @@ export class SearchBarComponent implements OnInit {
   //GET ALL USERS INDENT REQUESTS
   getAllUserIndents() {
     this.http
-      .get('http://194.164.169.138:8085/api/zrc/indents/getalluserindents')
+      .get('http://79.99.41.29/api/zrc/indents/getalluserindents')
       .subscribe((resultData: any) => {
         if (resultData.message === 'error') {
           alert('Error getting Indent Requests');
@@ -393,7 +393,7 @@ export class SearchBarComponent implements OnInit {
   getUserIndents() {
     this.http
       .get(
-        'http://194.164.169.138:8085/api/zrc/indents/getuserindents' +
+        'http://79.99.41.29/api/zrc/indents/getuserindents' +
           '/' +
           this.auth.getUserName()
       )
@@ -430,7 +430,7 @@ export class SearchBarComponent implements OnInit {
     };
     this.http
       .put(
-        'http://194.164.169.138:8085/api/zrc/userindent/update/markasread' +
+        'http://79.99.41.29/api/zrc/userindent/update/markasread' +
           '/' +
           serial,
         bodydata
@@ -453,7 +453,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   showPaymentAlert()  {
-    this.http.get("http://194.164.169.138:8085/api/zrc/payment/get-payment-details")
+    this.http.get("http://79.99.41.29/api/zrc/payment/get-payment-details")
     .subscribe((result: any) => {
       if(result.status === false){
         alert("Failed to get Payment Details");

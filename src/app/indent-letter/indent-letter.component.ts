@@ -56,7 +56,7 @@ export class IndentLetterComponent implements OnInit {
   //Get Indent Details
   getDetails() {
     this.http
-      .get('http://194.164.169.138:8085/api/zrc/getallindents')
+      .get('http://79.99.41.29/api/zrc/getallindents')
       .subscribe((resultData: any) => {
         this.isResultLoaded = true;
         this.indentArray = resultData.data;
@@ -80,7 +80,7 @@ export class IndentLetterComponent implements OnInit {
 
   getUserDetails() {
     this.http
-      .get('http://194.164.169.138:8085/api/zrc/userindent/getallindents')
+      .get('http://79.99.41.29/api/zrc/userindent/getallindents')
       .subscribe((resultData: any) => {
         this.isResultLoaded = true;
         this.indentArray = resultData.data;
@@ -120,7 +120,7 @@ export class IndentLetterComponent implements OnInit {
     console.log('get by serial called', data);
     this.http
       .get(
-        'http://194.164.169.138:8085/api/zrc/indents/getindentbyserial' + '/' + data
+        'http://79.99.41.29/api/zrc/indents/getindentbyserial' + '/' + data
       )
       .subscribe((resultData: any) => {
         (error: any) => {
@@ -135,7 +135,7 @@ export class IndentLetterComponent implements OnInit {
   editIndent(curr_indentArray: any) {
     this.http
       .get(
-        'http://194.164.169.138:8085/api/zrc/indent/getindentby/zrcserial' +
+        'http://79.99.41.29/api/zrc/indent/getindentby/zrcserial' +
           '/' +
           curr_indentArray.zrc_serial
       )
@@ -180,7 +180,7 @@ export class IndentLetterComponent implements OnInit {
   }
 
   getUserIndentBySerial(){
-    this.http.get("http://194.164.169.138:8085/api/zrc/user/userindents/getbyserial"+"/"+this.service.getIndentSl()).subscribe((resultData : any) => {
+    this.http.get("http://79.99.41.29/api/zrc/user/userindents/getbyserial"+"/"+this.service.getIndentSl()).subscribe((resultData : any) => {
       if(resultData.status === false){
         alert("Error Getting Indent data")
         console.log("Error getting indent data ", resultData)

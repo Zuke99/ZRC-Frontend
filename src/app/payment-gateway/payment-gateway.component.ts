@@ -25,13 +25,13 @@ export class PaymentGatewayComponent {
     //let key;
     let key: any;
     this.http
-      .get('http://194.164.169.138:8085/api/zrc/payment/get-key')
+      .get('http://79.99.41.29/api/zrc/payment/get-key')
       .subscribe((resultData: any) => {
         key = resultData;
       });
 
     const order = this.http
-      .post('http://194.164.169.138:8085/api/zrc/payment/payment-gateway', bodyData)
+      .post('http://79.99.41.29/api/zrc/payment/payment-gateway', bodyData)
       .subscribe((resultData: any) => {
         (error: any) => {
           console.log('Error sending Payment data', error);
@@ -46,7 +46,7 @@ export class PaymentGatewayComponent {
           image: 'https://example.com/your_logo',
           order_id: resultData.data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
           callback_url:
-            'http://194.164.169.138:8085/api/zrc/payment/payment-verification',
+            'http://79.99.41.29/api/zrc/payment/payment-verification',
           theme: {
             color: '#3399cc',
           },
@@ -86,7 +86,7 @@ export class PaymentGatewayComponent {
 
     try {
       const response = await fetch(
-        'http://194.164.169.138:8085/api/zrc/payment/payment-gateway',
+        'http://79.99.41.29/api/zrc/payment/payment-gateway',
         { method: 'POST' }
       );
       if (!response.ok) {
@@ -115,7 +115,7 @@ export class PaymentGatewayComponent {
       name: 'Rate Contract',
       description: 'Test Transaction',
       order_id: 'order_IluGWxBm9U8zJ8', //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-      callback_url: 'http://194.164.169.138:8085/api/zrc/payment/verify',
+      callback_url: 'http://79.99.41.29/api/zrc/payment/verify',
       notes: {
         address: 'Razorpay Corporate Office',
       },

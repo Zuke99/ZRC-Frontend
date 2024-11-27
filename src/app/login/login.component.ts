@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       password: this.password,
     };
     this.http
-      .post('http://194.164.169.138:8085/api/zrc/login/loginuser', bodyData)
+      .post('http://79.99.41.29/api/zrc/login/loginuser', bodyData)
       .subscribe((resultData: any) => {
         (error: any) => {
           console.log('Error sending login data', error);

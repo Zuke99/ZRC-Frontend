@@ -141,7 +141,7 @@ export class DownloadfileService {
 
 
   downloadFile(name: any){
-    return this.http.get('http://194.164.169.138:8085/api/zrc/download'+'/'+name,{
+    return this.http.get('http://79.99.41.29/api/zrc/download'+'/'+name,{
       responseType:'blob'
     })
   }

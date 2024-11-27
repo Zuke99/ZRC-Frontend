@@ -126,7 +126,7 @@ import { __await } from 'tslib';
     return true;
   }
   searchIndents(){
-    this.http.get("http://194.164.169.138:8085/api/zrc/getallindents-by-zrc-serial"+"/"+this.zrc_serial).subscribe((resultData:any)=>{
+    this.http.get("http://79.99.41.29/api/zrc/getallindents-by-zrc-serial"+"/"+this.zrc_serial).subscribe((resultData:any)=>{
     this.indentArray=resultData.data;
     if(this.indentArray.length > 0){
       console.log("all indents array",this.indentArray)
@@ -172,7 +172,7 @@ import { __await } from 'tslib';
   //SEarching from ZRC Table for AutoFill values
   search(): Promise <void>{
     return new Promise((resolve , reject) =>{
-      this.http.get("http://194.164.169.138:8085/api/zrc/indent"+"/"+this.zrc_serial)
+      this.http.get("http://79.99.41.29/api/zrc/indent"+"/"+this.zrc_serial)
       .subscribe((resultData:any)=>
       {
         this.isResultLoaded=true;
@@ -351,7 +351,7 @@ fy:this.financialYear
 
     }
 console.log("DATA GOING  " , bodyData)
-    this.http.post("http://194.164.169.138:8085/api/zrc/addindent",bodyData).subscribe((resultData:any)=>{
+    this.http.post("http://79.99.41.29/api/zrc/addindent",bodyData).subscribe((resultData:any)=>{
   
       
       
@@ -383,7 +383,7 @@ console.log("DATA GOING  " , bodyData)
       approval_status:'Approved',
       executive:this.auth.getUserName()
     }
-    this.http.put("http://194.164.169.138:8085/api/zrc/userindent/updatestatus"+"/"+serial,bodyData).subscribe((resultData : any) => {
+    this.http.put("http://79.99.41.29/api/zrc/userindent/updatestatus"+"/"+serial,bodyData).subscribe((resultData : any) => {
   
       this.service.setRequestSource(false)
     })
@@ -403,7 +403,7 @@ console.log("DATA GOING  " , bodyData)
       po_status:this.po_status,
       supply_status:this.supply_status
     }
-    this.http.put("http://194.164.169.138:8085/api/zrc/balanceUpdate"+"/"+this.zrc_serial,bodyData).subscribe((resultData:any)=>{
+    this.http.put("http://79.99.41.29/api/zrc/balanceUpdate"+"/"+this.zrc_serial,bodyData).subscribe((resultData:any)=>{
       console.log("Balance AND PO status updated in ZRC Table")
     }
     )
@@ -419,7 +419,7 @@ console.log("DATA GOING  " , bodyData)
   }
 
   getIndentSl(){
-    this.http.get("http://194.164.169.138:8085/api/zrc/tracker/indentsl").subscribe((resultData:any)=>{
+    this.http.get("http://79.99.41.29/api/zrc/tracker/indentsl").subscribe((resultData:any)=>{
       this.indents_sl=resultData.data[0].last_indent_sl;
       console.log("SERIAL " ,resultData.data[0].last_indent_sl)
       this.service.setIndentSl(this.indents_sl)
@@ -432,7 +432,7 @@ console.log("DATA GOING  " , bodyData)
     let bodyData={
       last_indent_sl:num
     }
-    this.http.put("http://194.164.169.138:8085/api/zrc/tracker/updatelastsl",bodyData).subscribe((resultData : any) =>{
+    this.http.put("http://79.99.41.29/api/zrc/tracker/updatelastsl",bodyData).subscribe((resultData : any) =>{
       console.log("update sl indent succesful")
     })
   }
@@ -543,7 +543,7 @@ console.log("DATA GOING  " , bodyData)
 
         console.log("Going Dqata" ,bodyData)
 
-        this.http.post("http://194.164.169.138:8085/api/zrc/indent/userindent",bodyData).subscribe((resultData : any) => {
+        this.http.post("http://79.99.41.29/api/zrc/indent/userindent",bodyData).subscribe((resultData : any) => {
           if(resultData.status === false){
           alert("Error Placing Indent")
           console.log(resultData)
@@ -571,7 +571,7 @@ console.log("DATA GOING  " , bodyData)
   //***************************** UPDATING INDENT **************************************/
 
     getEditIndents(){
-      this.http.get("http://194.164.169.138:8085/api/zrc/indents/getindentbyserial"+"/"+this.service.getIndentSl()).subscribe((resultData : any) => {
+      this.http.get("http://79.99.41.29/api/zrc/indents/getindentbyserial"+"/"+this.service.getIndentSl()).subscribe((resultData : any) => {
         if(resultData.message === 'error'){
           alert(resultData.message)
           console.log(resultData.data)
@@ -696,7 +696,7 @@ console.log("DATA GOING  " , bodyData)
   
       }
   
-      this.http.put("http://194.164.169.138:8085/api/zrc/indent/updateindent"+"/"+data.serial,bodyData).subscribe((resultData:any)=>{
+      this.http.put("http://79.99.41.29/api/zrc/indent/updateindent"+"/"+data.serial,bodyData).subscribe((resultData:any)=>{
         console.log(resultData);
         
         
@@ -742,7 +742,7 @@ console.log("DATA GOING  " , bodyData)
         po_status:this.po_status,
         supply_status:this.supply_status
       }
-      this.http.put("http://194.164.169.138:8085/api/zrc/balanceUpdate"+"/"+data.zrc_serial,bodyData).subscribe((resultData:any)=>{
+      this.http.put("http://79.99.41.29/api/zrc/balanceUpdate"+"/"+data.zrc_serial,bodyData).subscribe((resultData:any)=>{
         console.log("Balance AND PO status updated in ZRC Table",resultData)
         if(resultData.status === false ){
           alert("Update Failed")
